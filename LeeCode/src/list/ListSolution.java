@@ -187,9 +187,10 @@ public class ListSolution {
 	}
 
 	public ListNode mergeList(ListNode pivot, ListNode lower, ListNode higher) {
-		if (pivot == null) return null;
+		if (pivot == null)
+			return null;
 		pivot.next = higher;
-		
+
 		ListNode head = pivot;
 		if (lower != null) {
 			head = lower;
@@ -200,7 +201,7 @@ public class ListSolution {
 		}
 		return head;
 	}
-	
+
 	public ListNode sortList(ListNode head) {
 		if (head == null || head.next == null) {
 			return head;
@@ -221,7 +222,7 @@ public class ListSolution {
 			}
 			node = tmp;
 		}
-		
+
 		return mergeList(pivot, sortList(lower), sortList(higher));
 	}
 
