@@ -1,11 +1,8 @@
 package list;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 import org.junit.Test;
 
@@ -26,7 +23,7 @@ public class ListTest {
 	
 	@Test
 	public void testValidParentheses() {
-		ListSolution sol = new ListSolution();
+		StackSolution sol = new StackSolution();
 		
 		assertTrue(sol.isValidParentheses("(()[{}]){}"));
 		assertTrue(sol.isValidParentheses("(()[k{a}]bc){d}"));
@@ -34,7 +31,6 @@ public class ListTest {
 		assertFalse(sol.isValidParentheses("["));
 		assertFalse(sol.isValidParentheses("{]"));
 		assertFalse(sol.isValidParentheses("]a["));
-		
 	}
 	
 	@Test
@@ -49,6 +45,17 @@ public class ListTest {
 		System.out.println("L1 -> " + sol.outputList(l1));
 		System.out.println("L2 -> " + sol.outputList(l2));
 		System.out.println("Sum -> " + sol.outputList(sum));
+	}
+
+	@Test
+	public void testReverList() {
+		ListSolution sol = new ListSolution();
+		ListNode head = sol.constructList(new int[] {1,2,3,4,5,6});
+
+		System.out.println("Original list: " + sol.outputList(head));
+		System.out.println("Reversed list: " + sol.outputList(sol.reverseList(head)));
+		head = sol.constructList(new int[] {1,2,3,4,5,6});
+		System.out.println("Reversed list 2: " + sol.outputList(sol.reverseList2(head)));
 	}
 	
 	@Test

@@ -24,42 +24,6 @@ public class ListSolution {
 		return result;
 	}
 
-	private boolean matchParenthese(Deque<Character> stack, char c) {
-		if (c == ')' || c == '}' || c == ']') {
-			if (stack.isEmpty())
-				return false;
-			char top = stack.peek();
-			if ((c == ')' && top == '(') || (c == '}' && top == '{')
-					|| (c == ']' && top == '[')) {
-				stack.pop();
-			} else {
-				return false;
-			}
-		}
-
-		return true;
-	}
-
-	public boolean isValidParentheses(String s) {
-		Deque<Character> stack = new ArrayDeque<>();
-
-		char[] ch = s.toCharArray();
-
-		for (char c : ch) {
-			if (c == '(' || c == '{' || c == '[') {
-				stack.push(c);
-			} else {
-				if (!matchParenthese(stack, c)) {
-					return false;
-				}
-			}
-		}
-
-		if (stack.isEmpty())
-			return true;
-		return false;
-	}
-
 	public ListNode constructList(int[] nums) {
 		if (nums.length == 0)
 			return null;
@@ -285,6 +249,22 @@ public class ListSolution {
 		currNode.next = prevNode;
 		
 		return currNode;
+	}
+	
+	/**
+	 * Using recursive
+	 * @param head
+	 * @return
+	 */
+	public ListNode reverseList2(ListNode head) {
+		if (head == null || head.next == null) return head;
+		
+		ListNode last = head.next;
+		ListNode reverse = reverseList2(last);
+		last.next = head;
+		head.next = null;
+		
+		return reverse;
 	}
 	
 	/**
