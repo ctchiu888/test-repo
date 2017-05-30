@@ -29,8 +29,7 @@ public class ListSolution {
 			if (stack.isEmpty())
 				return false;
 			char top = stack.peek();
-			if ((c == ')' && top == '(') || (c == '}' && top == '{')
-					|| (c == ']' && top == '[')) {
+			if ((c == ')' && top == '(') || (c == '}' && top == '{') || (c == ']' && top == '[')) {
 				stack.pop();
 			} else {
 				return false;
@@ -187,9 +186,10 @@ public class ListSolution {
 	}
 
 	public ListNode mergeList(ListNode pivot, ListNode lower, ListNode higher) {
-		if (pivot == null) return null;
+		if (pivot == null)
+			return null;
 		pivot.next = higher;
-		
+
 		ListNode head = pivot;
 		if (lower != null) {
 			head = lower;
@@ -200,7 +200,7 @@ public class ListSolution {
 		}
 		return head;
 	}
-	
+
 	public ListNode sortList(ListNode head) {
 		if (head == null || head.next == null) {
 			return head;
@@ -221,8 +221,51 @@ public class ListSolution {
 			}
 			node = tmp;
 		}
-		
+
 		return mergeList(pivot, sortList(lower), sortList(higher));
+	}
+
+	public ListNode oddEvenList(ListNode head) {
+		if (head == null || head.next == null || head.next.next == null) {
+			return head;
+		}
+
+		ListNode evenHead = head.next;
+		ListNode odd = head;
+		ListNode even = head.next;
+
+		while (odd.next != null && even.next != null) {
+			odd.next = odd.next.next;
+			odd = odd.next;
+			even.next = even.next.next;
+			even = even.next;
+		}
+
+		odd.next = evenHead;
+
+		return head;
+	}
+
+	public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+		ListNode interNode = null;
+		if (headA == null || headB == null) return null;
+		// connect two list. If there is an intersection node, the list is a
+		// cyclic list and the problem becomes finding the beginning node of the
+		// loop
+		
+		// connect two list
+		ListNode lastA = headA;
+		while (lastA.next != null) {
+			lastA = lastA.next;
+		}
+		
+		lastA.next = headB;
+		interNode = detectCycle(headA);
+		
+		lastA.next = null;
+
+		return interNode;
+
 	}
 
 	public static void main(String[] args) {
