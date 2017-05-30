@@ -29,7 +29,8 @@ public class ListSolution {
 			if (stack.isEmpty())
 				return false;
 			char top = stack.peek();
-			if ((c == ')' && top == '(') || (c == '}' && top == '{') || (c == ']' && top == '[')) {
+			if ((c == ')' && top == '(') || (c == '}' && top == '{')
+					|| (c == ']' && top == '[')) {
 				stack.pop();
 			} else {
 				return false;
@@ -248,24 +249,71 @@ public class ListSolution {
 
 	public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
 		ListNode interNode = null;
-		if (headA == null || headB == null) return null;
+		if (headA == null || headB == null)
+			return null;
 		// connect two list. If there is an intersection node, the list is a
 		// cyclic list and the problem becomes finding the beginning node of the
 		// loop
-		
+
 		// connect two list
 		ListNode lastA = headA;
 		while (lastA.next != null) {
 			lastA = lastA.next;
 		}
-		
+
 		lastA.next = headB;
 		interNode = detectCycle(headA);
-		
+
 		lastA.next = null;
 
 		return interNode;
 
+	}
+
+	public ListNode reverseList(ListNode head) {
+		if (head == null || head.next == null) return head;
+		ListNode prevNode = null;
+		ListNode currNode = head;
+		ListNode nextNode = head.next;
+		
+		while (nextNode != null) {
+			currNode.next = prevNode;
+			prevNode = currNode;
+			currNode = nextNode;
+			nextNode = nextNode.next;
+		}
+		currNode.next = prevNode;
+		
+		return currNode;
+	}
+	
+	/**
+	 * Return true is the linked list is palindrome, means the first half list
+	 * is the same as reversed second half list.
+	 * 
+	 * @param head
+	 * @return
+	 */
+	public boolean isPalindrome(ListNode head) {
+		// Find the head of second half list
+		ListNode fast = head, slow = head;
+		while (fast != null && fast.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+		// Reverse the second half list		
+		ListNode reverse = reverseList(slow);
+
+		// Compare two list
+		slow = head;
+		while (reverse != null) {
+			//compare slow and reverse
+			if (slow.val != reverse.val) return false;
+			reverse = reverse.next;
+			slow = slow.next;
+		}
+		
+		return true;
 	}
 
 	public static void main(String[] args) {
