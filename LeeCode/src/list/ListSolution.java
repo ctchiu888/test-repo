@@ -1,7 +1,5 @@
 package list;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -295,6 +293,29 @@ public class ListSolution {
 		
 		return true;
 	}
+	
+    public ListNode removeElements(ListNode head, int val) {
+    	if (head == null) return null;
+    	ListNode curr = head;
+    	ListNode prev = null;
+    	while (curr != null) {
+    		if (curr.val == val) {
+    			if (curr.next != null) {
+    				curr.val = curr.next.val;
+    				curr.next = curr.next.next;
+    			} else {
+    				if (prev == null) return null;
+    				prev.next = null;
+    				curr = null;
+    			}
+    		} else {
+    			prev = curr;
+    			curr = curr.next;
+    		}
+    	}
+    	
+    	return head;
+    }
 
 	public static void main(String[] args) {
 

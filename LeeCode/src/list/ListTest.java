@@ -1,6 +1,5 @@
 package list;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -56,6 +55,15 @@ public class ListTest {
 		System.out.println("Reversed list: " + sol.outputList(sol.reverseList(head)));
 		head = sol.constructList(new int[] {1,2,3,4,5,6});
 		System.out.println("Reversed list 2: " + sol.outputList(sol.reverseList2(head)));
+	}
+	
+	@Test
+	public void testRemoveElements() {
+		ListSolution sol = new ListSolution();
+		// ListNode head = sol.constructList(new int[] {6,1,2,3,6,4,5,6});
+		ListNode head = sol.constructList(new int[] {});
+		System.out.println("Original list: " + sol.outputList(head));
+		System.out.println("After removed: " + sol.outputList(sol.removeElements(head, 2)));
 	}
 	
 	@Test
