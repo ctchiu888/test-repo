@@ -34,8 +34,7 @@ public class HashTest {
 		StrobogrammaticNumber sn = new StrobogrammaticNumber();
 		String[] numList = { "16891", "1291", "06911690" };
 		for (String s : numList) {
-			System.out.println(s + " is Strobogrammatic Number => "
-					+ sn.isStrobogrammaticNumber1(s));
+			System.out.println(s + " is Strobogrammatic Number => " + sn.isStrobogrammaticNumber1(s));
 		}
 	}
 
@@ -44,21 +43,31 @@ public class HashTest {
 		Palindrome p = new Palindrome();
 
 		assertEquals(7, p.longestPalindrome("abccccdd"));
-		assertEquals(
-				983,
-				p.longestPalindrome("civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"));
+		assertEquals(983, p.longestPalindrome(
+				"civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"));
 	}
 
 	@Test
 	public void testTwoSum() {
 		HashSolution sol = new HashSolution();
 
-		int [] res = sol.twoSum(new int[] { 1, 5, 18, 6, 5, 23, -9 }, 9);
+		int[] res = sol.twoSum(new int[] { 1, 5, 18, 6, 5, 23, -9 }, 9);
 		System.out.print("{");
 		for (int i : res) {
-			System.out.print(i + ",");	
+			System.out.print(i + ",");
 		}
 		System.out.println("}");
-		
+
+	}
+
+	@Test
+	public void testSingleNumber() {
+		HashSolution sol = new HashSolution();
+		int[] nums = { 1, 2, 5, 7, 3, 2, 5, 3, 1 };
+		try {
+			assertEquals(7, sol.singleNumber(nums));
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
 	}
 }

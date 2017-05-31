@@ -1,7 +1,10 @@
 package hash;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 public class HashSolution {
 
@@ -18,19 +21,35 @@ public class HashSolution {
 		return new int[] {};
 	}
 
+	public int singleNumber(int[] nums) {
+		Set<Integer> m = new HashSet<>();
+		int result = 0;
+		for (int i = 0; i < nums.length; i++) {
+			if (m.contains(nums[i])) {
+				m.remove(nums[i]);
+			} else {
+				m.add(nums[i]);
+			}
+		}
+
+		if (m.size() == 1) {
+			Iterator<Integer> iter = m.iterator();
+			result = iter.next();
+		}
+
+		return result;
+	}
+
 	public static void main(String[] args) {
-		String[] sList = { "aab", "bbbe", "code", "carerac",
-				"asdfdaudfduuaesua" };
+		String[] sList = { "aab", "bbbe", "code", "carerac", "asdfdaudfduuaesua" };
 
 		for (String s : sList) {
-			System.out.println(s + " => "
-					+ Palindrome.isPalindromPermutation(s));
+			System.out.println(s + " => " + Palindrome.isPalindromPermutation(s));
 		}
 
 		String[] numList = { "16891", "1291", "06911690" };
 		for (String s : numList) {
-			System.out.println(s + " is Strobogrammatic Number => "
-					+ StrobogrammaticNumber.isStrobogrammaticNumber(s));
+			System.out.println(s + " is Strobogrammatic Number => " + StrobogrammaticNumber.isStrobogrammaticNumber(s));
 		}
 	}
 }
