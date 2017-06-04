@@ -15,7 +15,6 @@ public class HashSolution {
 			if (map.containsKey(target - nums[i])) {
 				return new int[] { map.get(target - nums[i]), i };
 			}
-
 			map.put(nums[i], i);
 		}
 		return new int[] {};
