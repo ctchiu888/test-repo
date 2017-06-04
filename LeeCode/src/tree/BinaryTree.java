@@ -27,8 +27,7 @@ public class BinaryTree {
 			}
 		}
 
-		if (Math.abs(target - (double) root.val) > Math.abs((double) closest
-				- target)) {
+		if (Math.abs(target - (double) root.val) > Math.abs((double) closest - target)) {
 			return closest;
 		}
 
@@ -66,8 +65,7 @@ public class BinaryTree {
 		if (leftDepth == rightDepth) {
 			count = (1 << leftDepth) - 1;
 		} else {
-			count = 1 + countCompleteTreeNodes(root.left)
-					+ countCompleteTreeNodes(root.right);
+			count = 1 + countCompleteTreeNodes(root.left) + countCompleteTreeNodes(root.right);
 		}
 
 		return count;
@@ -85,8 +83,7 @@ public class BinaryTree {
 	public int longestConsecutive(TreeNode root) {
 		if (root == null)
 			return 0;
-		return Math.max(longCon(root.left, 1, root.val),
-				longCon(root.right, 1, root.val));
+		return Math.max(longCon(root.left, 1, root.val), longCon(root.right, 1, root.val));
 	}
 
 	private String convertListToPathString(List<String> path) {
@@ -103,8 +100,7 @@ public class BinaryTree {
 		return sb.toString();
 	}
 
-	private void listBinaryTreePaths(TreeNode root, List<String> onePath,
-			List<String> paths) {
+	private void listBinaryTreePaths(TreeNode root, List<String> onePath, List<String> paths) {
 		if (root == null)
 			return;
 
@@ -126,5 +122,27 @@ public class BinaryTree {
 		listBinaryTreePaths(root, onePath, paths);
 
 		return paths;
+	}
+
+	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+		// I am the LCA if
+		// (1) p in left-subtree and q in right subtree, or vice versa
+		// (2) I am p (or q) and p is in one of my subtree
+		if (root == null || root == p || root == q)
+			return root;
+
+		TreeNode leftLca = lowestCommonAncestor(root.left, p, q);
+		TreeNode rightLca = lowestCommonAncestor(root.right, p, q);
+
+		if (leftLca != null && rightLca != null) {
+			// this is the case that p and q are in left and right subtree, so
+			// the root here is the LCA
+			return root;
+		}
+
+		if (leftLca == null)
+			return rightLca;
+
+		return leftLca;
 	}
 }
