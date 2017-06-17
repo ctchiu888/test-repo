@@ -49,23 +49,29 @@ public class ArrayTest {
 			System.out.println("");
 		}
 	}
-	
+
 	@Test
 	public void testIslandPerimeter() {
 		Perimeter p = new Perimeter();
-		int[][] island = {{0,1,0,0}, {1,1,1,0}, {0,1,0,0},{1,1,0,0}};
-		
+		int[][] island = { { 0, 1, 0, 0 }, { 1, 1, 1, 0 }, { 0, 1, 0, 0 }, { 1, 1, 0, 0 } };
+
 		assertEquals(16, p.islandPerimeter(island));
 	}
-	
+
 	@Test
 	public void testZigzagIterator() {
 		List<Integer> l1 = new LinkedList<Integer>();
-		l1.add(1); l1.add(2); l1.add(3);
+		l1.add(1);
+		l1.add(2);
+		l1.add(3);
 		List<Integer> l2 = new LinkedList<Integer>();
-		l2.add(4); l2.add(5); l2.add(6); l2.add(7);
+		l2.add(4);
+		l2.add(5);
+		l2.add(6);
+		l2.add(7);
 		List<Integer> l3 = new LinkedList<Integer>();
-		l3.add(8); l3.add(9);
+		l3.add(8);
+		l3.add(9);
 
 		ZigzagIterator iter = new ZigzagIterator(l2, l1);
 		System.out.print("[");
@@ -73,5 +79,16 @@ public class ArrayTest {
 			System.out.print(iter.next() + " ");
 		}
 		System.out.print("]");
+	}
+
+	@Test
+	public void testMajorityElement() {
+		ArraySolution sol = new ArraySolution();
+		int nums[] = { 1, 2, 1, 3, 1, 4, 1, 5, 6, 1, 7, 1, 1, 1, 1, 8, 4, 3, 1 };
+		int nums2[] = { 1, 2, 3, 4, 5, 6, 5, 5, 5, 2, 5, 5, 5, 3 };
+		int nums3[] = { 6,5,5};
+		assertEquals(1, sol.majorityElement(nums));
+		assertEquals(5, sol.majorityElement(nums2));
+		assertEquals(5, sol.majorityElement(nums3));
 	}
 }
