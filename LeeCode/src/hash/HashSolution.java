@@ -38,6 +38,31 @@ public class HashSolution {
 
 		return result;
 	}
+	
+	private int calculateSquareSum(int n) {
+		int sum = 0;
+		int num = n;
+		while (num > 0) {
+			sum = sum + (int) Math.pow(num%10, 2);
+			num = num / 10;
+		}
+		
+		return sum;
+	}
+	
+	public boolean isHappy(int n) {
+		Set<Integer> set = new HashSet<>();
+		int sum = n;
+		while (true) {
+			sum = calculateSquareSum(sum);
+			if (sum == 1) {
+				return true;
+			} if (set.contains(sum)) {
+				return false;
+			}
+			set.add(sum);
+		}
+	}
 
 	public static void main(String[] args) {
 		String[] sList = { "aab", "bbbe", "code", "carerac", "asdfdaudfduuaesua" };

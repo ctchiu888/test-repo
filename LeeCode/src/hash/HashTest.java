@@ -109,4 +109,13 @@ public class HashTest {
 		assertEquals(-1, cache.get(1)); // returns -1 (not found)
 		assertEquals(3, cache.get(2));
 	}
+	
+	@Test
+	public void testIsHappy() {
+		HashSolution sol = new HashSolution();
+		assertEquals(true, sol.isHappy(19));
+		assertEquals(false, sol.isHappy(22));
+		assertEquals(true, sol.isHappy(68));
+		
+	}
 }
