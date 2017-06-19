@@ -91,4 +91,14 @@ public class ArrayTest {
 		assertEquals(5, sol.majorityElement(nums2));
 		assertEquals(5, sol.majorityElement(nums3));
 	}
+	
+	@Test
+	public void testShortestDistance() {
+		ArraySolution sol = new ArraySolution();
+		String [] words = {"practice", "makes", "perfect", "coding", "makes"};
+		assertEquals(3, sol.shortestDistance(words, "coding", "practice"));
+		assertEquals(1, sol.shortestDistance(words, "makes", "coding"));
+		assertEquals(2, sol.shortestDistance(words, "perfect", "practice"));
+		
+	}
 }
