@@ -54,5 +54,12 @@ public class MathTest {
 		assertEquals(3, d.findNthDigit(1000));
 		assertEquals(1, d.findNthDigit(1000000000));
 	}
+	
+	@Test
+	public void testMissingNumber() {
+		MathSolution sol = new MathSolution();
+		assertEquals(2, sol.missingNumber(new int[] {0,3,1, 4, 5}));
+		
+	}
 
 }
