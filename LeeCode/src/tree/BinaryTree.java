@@ -155,4 +155,15 @@ public class BinaryTree {
     	if (root == null) return 0;
     	return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1; 
     }
+    
+    public TreeNode invertTree(TreeNode root) {
+    	if (root == null) return null;
+    	
+    	TreeNode newLeft = invertTree(root.right);
+    	TreeNode newRight = invertTree(root.left);
+    	root.left = newLeft;
+    	root.right = newRight;
+    	
+    	return root;
+    }
 }

@@ -106,5 +106,12 @@ public class StringTest {
 			assertEquals(true, sol.validWordAbbreviation("w12rd", "w122"));
 		}
 	}
+	
+	@Test
+	public void testStrStr() {
+		StringSolution sol = new StringSolution();
+		//assertEquals(0, sol.strStr("", ""));
+		assertEquals(4, sol.strStr("ddfgabcoik", "abc"));
+	}
 
 }

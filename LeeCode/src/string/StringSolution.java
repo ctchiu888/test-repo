@@ -270,8 +270,7 @@ public class StringSolution {
 			}
 
 			String num = "";
-			while (j < abbr.length() && abbr.charAt(j) >= '0'
-					&& abbr.charAt(j) <= '9') {
+			while (j < abbr.length() && abbr.charAt(j) >= '0' && abbr.charAt(j) <= '9') {
 				num += abbr.charAt(j);
 				j++;
 			}
@@ -284,24 +283,54 @@ public class StringSolution {
 
 		return i == word.length() && j == abbr.length();
 	}
-	
-    public boolean repeatedSubstringPattern(String s) {
-    	int subLen = 2;
-    	
-    	
-        return true;
-    }
+
+	public boolean repeatedSubstringPattern(String s) {
+		int subLen = 2;
+
+		return true;
+	}
+
+	private boolean isSubstring(String subStr, String str, int start) {
+		if (str.length() - start < subStr.length()) {
+			return false;
+		}
+
+		for (int i = 0, j = start; i < subStr.length(); i++, j++) {
+			if (subStr.charAt(i) != str.charAt(j)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public int strStr(String haystack, String needle) {
+		if (haystack == null || needle == null)
+			return -1;
+		if (haystack.length() < needle.length())
+			return -1;
+		if (haystack.equals(needle) || needle.isEmpty())
+			return 0;
+
+		int p1 = 0;
+		while (p1 < haystack.length()) {
+			if (needle.charAt(0) == haystack.charAt(p1)) {
+				if (isSubstring(needle, haystack, p1)) {
+					return p1;
+				}
+			}
+			p1++;
+		}
+
+		return -1;
+	}
 
 	public static void main(String[] args) {
 
-		String[] arry = { null, "", "I am a good man", "hello world",
-				"leetcode" };
+		String[] arry = { null, "", "I am a good man", "hello world", "leetcode" };
 
 		for (String s : arry) {
-			System.out.println(s + " REVERSE: "
-					+ StringSolution.reverseString(s));
-			System.out.println(s + " REVERSE Vowel: "
-					+ StringSolution.reverseVowels(s));
+			System.out.println(s + " REVERSE: " + StringSolution.reverseString(s));
+			System.out.println(s + " REVERSE Vowel: " + StringSolution.reverseVowels(s));
 		}
 	}
 
