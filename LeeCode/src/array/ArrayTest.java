@@ -2,12 +2,13 @@ package array;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import list.ListNode;
-
 import org.junit.Test;
+
+import list.ListNode;
 
 public class ArrayTest {
 
@@ -86,19 +87,55 @@ public class ArrayTest {
 		ArraySolution sol = new ArraySolution();
 		int nums[] = { 1, 2, 1, 3, 1, 4, 1, 5, 6, 1, 7, 1, 1, 1, 1, 8, 4, 3, 1 };
 		int nums2[] = { 1, 2, 3, 4, 5, 6, 5, 5, 5, 2, 5, 5, 5, 3 };
-		int nums3[] = { 6,5,5};
+		int nums3[] = { 6, 5, 5 };
 		assertEquals(1, sol.majorityElement(nums));
 		assertEquals(5, sol.majorityElement(nums2));
 		assertEquals(5, sol.majorityElement(nums3));
 	}
-	
+
 	@Test
 	public void testShortestDistance() {
 		ArraySolution sol = new ArraySolution();
-		String [] words = {"practice", "makes", "perfect", "coding", "makes"};
+		String[] words = { "practice", "makes", "perfect", "coding", "makes" };
 		assertEquals(3, sol.shortestDistance(words, "coding", "practice"));
 		assertEquals(1, sol.shortestDistance(words, "makes", "coding"));
 		assertEquals(2, sol.shortestDistance(words, "perfect", "practice"));
+
+	}
+
+	private void printArray(int[] nums) {
+		StringBuilder sb = new StringBuilder("{");
+		for (int i : nums) {
+			sb.append(i).append(",");
+		}
+		sb.append("}");
+		System.out.println(sb.toString());
+	}
+
+	@Test
+	public void testMoveZeroes() {
+		ArraySolution sol = new ArraySolution();
+
+		int[] nums = new int[] { 0, 0, 0, 0, 0 };
+		printArray(nums);
+		sol.moveZeroes(nums);
+		printArray(nums);
+
+	}
+
+	@Test
+	public void testFindMaxConsecutiveOnes() {
+		ArraySolution sol = new ArraySolution();
+		assertEquals(0, sol.findMaxConsecutiveOnes(new int[] { 0, 0, 0,0 }));
+		assertEquals(3, sol.findMaxConsecutiveOnes(new int[] { 1, 0, 0, 1, 1, 0, 1, 1, 1 }));
+	}
+	
+	@Test
+	public void testFindDisappearedNumbers() {
+		ArraySolution sol = new ArraySolution();
+		
+		assertEquals(Arrays.asList(1,4,7), sol.findDisappearedNumbers(new int[] {2,5,3,6,6,3,2}));
+		assertEquals(Arrays.asList(1,7,11), sol.findDisappearedNumbers(new int[] {2,5,3,6,6,3,2,8,9,4,10}));
 		
 	}
 }

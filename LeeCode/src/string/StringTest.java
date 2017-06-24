@@ -98,20 +98,41 @@ public class StringTest {
 		StringSolution sol = new StringSolution();
 
 		for (int i = 0; i < 100000; i++) {
-			assertEquals(true, sol.validWordAbbreviation(
-					"internationalization", "i12iz4n"));
+			assertEquals(true, sol.validWordAbbreviation("internationalization", "i12iz4n"));
 			assertEquals(false, sol.validWordAbbreviation("apple", "a2e"));
 			assertEquals(true, sol.validWordAbbreviation("word", "word"));
 			assertEquals(true, sol.validWordAbbreviation("word", "1ord"));
 			assertEquals(true, sol.validWordAbbreviation("w12rd", "w122"));
 		}
 	}
-	
+
 	@Test
 	public void testStrStr() {
 		StringSolution sol = new StringSolution();
-		//assertEquals(0, sol.strStr("", ""));
+		// assertEquals(0, sol.strStr("", ""));
 		assertEquals(4, sol.strStr("ddfgabcoik", "abc"));
+	}
+
+	@Test
+	public void testStringIterator() {
+		try {
+			StringIterator iterator = new StringIterator("x6");; // new StringIterator("L10e2t1C1o1d1e1");
+			assertEquals('x', iterator.next()); // return 'L'
+			//for (int i = 0; i < 9; i++) iterator.next();
+			assertEquals('x', iterator.next()); // return 'e'
+			assertEquals('x', iterator.next()); // return 'e'
+			assertEquals(true, iterator.hasNext());
+			assertEquals('x', iterator.next()); // return 't'
+			assertEquals('x', iterator.next()); // return 'C'
+			assertEquals('x', iterator.next()); // return 'o'
+			assertEquals(' ', iterator.next()); // return 'd'
+			assertEquals(false, iterator.hasNext()); // return true
+			assertEquals(' ', iterator.next()); // return 'e'
+			assertEquals(false, iterator.hasNext()); // return false
+			assertEquals(' ', iterator.next()); // return ' '
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

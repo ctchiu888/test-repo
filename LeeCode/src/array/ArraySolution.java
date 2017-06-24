@@ -1,6 +1,8 @@
 package array;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ArraySolution {
@@ -47,7 +49,73 @@ public class ArraySolution {
 			}
 		}
 		return minDist;
-
 	}
+
+	public void moveZeroes(int[] nums) {
+		int p0 = 0;
+		int p1 = 0;
+
+		while (p1 < nums.length && p0 < nums.length) {
+			while (p0 < nums.length && nums[p0] != 0) {
+				p0++;
+			}
+
+			while (p1 < nums.length && nums[p1] == 0) {
+				p1++;
+			}
+
+			if (p1 > p0 && p1 <nums.length) {
+				nums[p0] = nums[p1];
+				nums[p1] = 0;
+			} else {
+				p1++;
+			}
+		}
+	}
+	
+	public int findMaxConsecutiveOnes(int[] nums) {
+		int max = 0, p1 = 0, count = 0;
+		
+		while (p1 < nums.length) {
+			while (p1 < nums.length && nums[p1] != 1) {
+				p1++;
+			}
+			count = 0;
+			while (p1 < nums.length && nums[p1] == 1) {
+				p1++;
+				count++;
+			}			
+			max = Math.max(max, count);
+		}
+		
+		return max;
+	}
+	
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+    	List<Integer> list = new ArrayList<>();
+    	int p = 0;
+    	
+    	while (p < nums.length) {
+    		if (nums[p] == -1) {
+    			p++;
+    		} else {
+    			int idx = nums[p] - 1;
+    			if (nums[idx] == -1) {
+    				p++;
+    			} else {
+    				nums[p] = nums[idx];
+        			nums[idx] = -1;	
+    			}
+    		}
+    	}
+    	
+    	for (int i = 0; i < nums.length; i++) {
+    		if (nums[i] != -1) {
+    			list.add(i+1);
+    		}
+    	}
+    	
+    	return list;
+    }
 
 }
