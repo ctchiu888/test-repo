@@ -12,11 +12,9 @@ public class TreeTest {
 
 		assertEquals(0, l.lengthLongestPath(""));
 		assertEquals(8, l.lengthLongestPath("file.ext"));
-		assertEquals(20,
-				l.lengthLongestPath("dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext"));
-		assertEquals(
-				32,
-				l.lengthLongestPath("dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext"));
+		assertEquals(20, l.lengthLongestPath("dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext"));
+		assertEquals(32, l.lengthLongestPath(
+				"dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext"));
 	}
 
 	private TreeNode constructTree() {
@@ -55,10 +53,16 @@ public class TreeTest {
 	}
 
 	@Test
-	void testLongestConsecutive() {
+	public void testLongestConsecutive() {
 		BinaryTree bt = new BinaryTree();
 		TreeNode root = constructTree();
 		assertEquals(3, bt.longestConsecutive(root));
+	}
+
+	@Test
+	public void testSortedArrayToBST() {
+		BinaryTree bt = new BinaryTree();
+		bt.sortedArrayToBST(new int[] { 1, 2, 3, 4, 5, 6 });
 	}
 
 }

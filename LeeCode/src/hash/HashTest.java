@@ -75,7 +75,7 @@ public class HashTest {
 
 	@Test
 	public void testLRUCache1() {
-		LRUCache cache = new LRUCache(2); /* capacity */ 
+		LRUCache cache = new LRUCache(2); /* capacity */
 		cache.put(1, 1);
 		cache.put(2, 2);
 		assertEquals(1, cache.get(1)); // returns 1
@@ -86,10 +86,10 @@ public class HashTest {
 		assertEquals(3, cache.get(3)); // returns 3
 		assertEquals(4, cache.get(4)); // returns 4
 	}
-	
+
 	@Test
 	public void testLRUCache2() {
-		LRUCache cache = new LRUCache(2); /* capacity */ 
+		LRUCache cache = new LRUCache(2); /* capacity */
 		assertEquals(-1, cache.get(2)); // returns -1 (not found)
 		cache.put(2, 6);
 		assertEquals(-1, cache.get(1));
@@ -98,24 +98,38 @@ public class HashTest {
 		assertEquals(2, cache.get(1));
 		assertEquals(6, cache.get(2));
 	}
-	
+
 	@Test
 	public void testLRUCache3() {
 		LRUCache cache = new LRUCache(2); /* capacity */
-		cache.put(2,  1);
-		cache.put(1,  1);
-		cache.put(2,  3);
-		cache.put(4,  1);
+		cache.put(2, 1);
+		cache.put(1, 1);
+		cache.put(2, 3);
+		cache.put(4, 1);
 		assertEquals(-1, cache.get(1)); // returns -1 (not found)
 		assertEquals(3, cache.get(2));
 	}
-	
+
 	@Test
 	public void testIsHappy() {
 		HashSolution sol = new HashSolution();
 		assertEquals(true, sol.isHappy(19));
 		assertEquals(false, sol.isHappy(22));
 		assertEquals(true, sol.isHappy(68));
-		
+	}
+
+	@Test
+	public void testIsAnagram() {
+		HashSolution sol = new HashSolution();
+		assertEquals(true, sol.isAnagram("", ""));
+		assertEquals(true, sol.isAnagram("anagram", "nagaram"));
+		assertEquals(false, sol.isAnagram("rat", "car"));
+	}
+
+	@Test
+	public void testContainsNearbyDuplicate() {
+		HashSolution sol = new HashSolution();
+		assertEquals(true, sol.containsNearbyDuplicate(new int[]{1,2,5,3,1,4,5,1}, 3));
+		assertEquals(false, sol.containsNearbyDuplicate(new int[]{1,2,5,3,1,4,5}, 3));
 	}
 }

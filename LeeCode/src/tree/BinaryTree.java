@@ -1,6 +1,7 @@
 package tree;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BinaryTree {
@@ -145,25 +146,110 @@ public class BinaryTree {
 
 		return leftLca;
 	}
-	
+
 	/**
 	 * 
 	 * @param root
 	 * @return
 	 */
-    public int maxDepth(TreeNode root) {
-    	if (root == null) return 0;
-    	return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1; 
-    }
-    
-    public TreeNode invertTree(TreeNode root) {
-    	if (root == null) return null;
-    	
-    	TreeNode newLeft = invertTree(root.right);
-    	TreeNode newRight = invertTree(root.left);
-    	root.left = newLeft;
-    	root.right = newRight;
-    	
-    	return root;
-    }
+	public int maxDepth(TreeNode root) {
+		if (root == null)
+			return 0;
+		return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+	}
+
+	public int minDepth(TreeNode root) {
+		if (root == null)
+			return 0;
+		if (root.left == null && root.right == null)
+			return 1;
+
+		if (root.left == null) {
+			return minDepth(root.right) + 1;
+		} else if (root.right == null) {
+			return minDepth(root.left) + 1;
+		}
+		return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+	}
+
+	public TreeNode invertTree(TreeNode root) {
+		if (root == null)
+			return null;
+
+		TreeNode newLeft = invertTree(root.right);
+		TreeNode newRight = invertTree(root.left);
+		root.left = newLeft;
+		root.right = newRight;
+
+		return root;
+	}
+
+	public int diameterOfBinaryTree(TreeNode root) {
+		if (root == null)
+			return 0;
+
+		int dia = 0;
+
+		TreeNode left = root.left;
+		TreeNode right = root.right;
+
+		int leftMax = maxDepth(left);
+		int rightMax = maxDepth(right);
+
+		int leftDia = diameterOfBinaryTree(left);
+		int rightDia = diameterOfBinaryTree(right);
+
+		dia = Math.max(leftMax + rightMax, Math.max(leftDia, rightDia));
+
+		return dia;
+	}
+
+	public boolean isSameTree(TreeNode p, TreeNode q) {
+		if (p == null && q == null)
+			return true;
+		if (p == null || q == null)
+			return false;
+		return (p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right));
+	}
+
+	public TreeNode sortedArrayToBST(int[] nums) {
+		if (nums.length == 0)
+			return null;
+
+		if (nums.length == 1) {
+			return new TreeNode(nums[0]);
+		}
+
+		int midIndex = (nums.length % 2 == 0) ? nums.length / 2 - 1 : nums.length / 2;
+		TreeNode root = new TreeNode(nums[midIndex]);
+
+		if (midIndex - 1 >= 0) {
+			root.left = sortedArrayToBST(Arrays.copyOfRange(nums, 0, midIndex));
+		} else {
+			root.left = null;
+		}
+
+		if (midIndex + 1 < nums.length) {
+			root.right = sortedArrayToBST(Arrays.copyOfRange(nums, midIndex + 1, nums.length));
+		} else {
+			root.right = null;
+		}
+		return root;
+	}
+
+	public int treeDepth(TreeNode root) {
+		if (root == null)
+			return 0;
+		return Math.max(treeDepth(root.left), treeDepth(root.right)) + 1;
+	}
+
+	public boolean isBalanced(TreeNode root) {
+		if (root == null)
+			return true;
+
+		int l = treeDepth(root.left);
+		int r = treeDepth(root.right);
+
+		return Math.abs(l - r) <= 1 && isBalanced(root.left) && isBalanced(root.right);
+	}
 }

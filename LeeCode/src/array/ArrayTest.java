@@ -138,4 +138,17 @@ public class ArrayTest {
 		assertEquals(Arrays.asList(1,7,11), sol.findDisappearedNumbers(new int[] {2,5,3,6,6,3,2,8,9,4,10}));
 		
 	}
+	
+	@Test
+	public void testFindRadius() {
+		Heater sol = new Heater();
+		int [] houses = {282475249,622650073,984943658,144108930,470211272,101027544,457850878,458777923};
+		int [] heaters = {823564440,115438165,784484492,74243042,114807987,137522503,441282327,16531729,823378840,143542612}; 
+		
+		assertEquals(161834419, sol.findRadius(houses, heaters));
+		assertEquals(1, sol.findRadius(new int[] {1,2,3,4}, new int[]{1,4}));
+		assertEquals(1, sol.findRadius(new int[] {1,2,3}, new int[]{2}));
+		assertEquals(3, sol.findRadius(new int[] {1,2,3,4,5,6,7,8}, new int[]{1,5}));
+		assertEquals(1, sol.findRadius(new int[] {1,2,3,4,5,6,7,8,9,10}, new int[]{2,3,4,5,6,7,8,9}));
+	}
 }

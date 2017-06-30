@@ -233,11 +233,12 @@ public class ListSolution {
 	}
 
 	public ListNode reverseList(ListNode head) {
-		if (head == null || head.next == null) return head;
+		if (head == null || head.next == null)
+			return head;
 		ListNode prevNode = null;
 		ListNode currNode = head;
 		ListNode nextNode = head.next;
-		
+
 		while (nextNode != null) {
 			currNode.next = prevNode;
 			prevNode = currNode;
@@ -245,26 +246,28 @@ public class ListSolution {
 			nextNode = nextNode.next;
 		}
 		currNode.next = prevNode;
-		
+
 		return currNode;
 	}
-	
+
 	/**
 	 * Using recursive
+	 * 
 	 * @param head
 	 * @return
 	 */
 	public ListNode reverseList2(ListNode head) {
-		if (head == null || head.next == null) return head;
-		
+		if (head == null || head.next == null)
+			return head;
+
 		ListNode last = head.next;
 		ListNode reverse = reverseList2(last);
 		last.next = head;
 		head.next = null;
-		
+
 		return reverse;
 	}
-	
+
 	/**
 	 * Return true is the linked list is palindrome, means the first half list
 	 * is the same as reversed second half list.
@@ -279,44 +282,108 @@ public class ListSolution {
 			slow = slow.next;
 			fast = fast.next.next;
 		}
-		// Reverse the second half list		
+		// Reverse the second half list
 		ListNode reverse = reverseList(slow);
 
 		// Compare two list
 		slow = head;
 		while (reverse != null) {
-			//compare slow and reverse
-			if (slow.val != reverse.val) return false;
+			// compare slow and reverse
+			if (slow.val != reverse.val)
+				return false;
 			reverse = reverse.next;
 			slow = slow.next;
 		}
-		
+
 		return true;
 	}
-	
-    public ListNode removeElements(ListNode head, int val) {
-    	if (head == null) return null;
-    	ListNode curr = head;
+
+	public ListNode removeElements(ListNode head, int val) {
+		if (head == null)
+			return null;
+		ListNode curr = head;
+		ListNode prev = null;
+		while (curr != null) {
+			if (curr.val == val) {
+				if (curr.next != null) {
+					curr.val = curr.next.val;
+					curr.next = curr.next.next;
+				} else {
+					if (prev == null)
+						return null;
+					prev.next = null;
+					curr = null;
+				}
+			} else {
+				prev = curr;
+				curr = curr.next;
+			}
+		}
+
+		return head;
+	}
+
+	public ListNode deleteSortedDuplicates(ListNode head) {
+		if (head == null || head.next == null)
+			return head;
+		ListNode ptr = head;
+		ListNode tmp = null;
+
+		while (ptr.next != null) {
+			if (ptr.val == ptr.next.val) {
+				tmp = ptr.next;
+				ptr.next = ptr.next.next;
+				tmp.next = null;
+			} else {
+				ptr = ptr.next;
+			}
+		}
+
+		return head;
+	}
+
+	/**
+	 * Delete all nodes that have duplicated in a sorted list
+	 * @param head
+	 * @return
+	 */
+    public ListNode deleteDuplicates2(ListNode head) {
+    	if (head == null || head.next == null) return head;
+    	
+    	boolean deleteMe = false;
+    	ListNode ptr = head;
     	ListNode prev = null;
-    	while (curr != null) {
-    		if (curr.val == val) {
-    			if (curr.next != null) {
-    				curr.val = curr.next.val;
-    				curr.next = curr.next.next;
-    			} else {
-    				if (prev == null) return null;
-    				prev.next = null;
-    				curr = null;
-    			}
+    	ListNode tmp;
+    	
+    	while (ptr.next != null) {
+    		if (ptr.val == ptr.next.val) {
+    			deleteMe = true;
+    			tmp = ptr.next;
+    			ptr.next = ptr.next.next;
+    			tmp.next = null;
+    		} else if (deleteMe) {
+    			ptr.val = ptr.next.val;
+    			tmp = ptr.next;
+    			ptr.next = ptr.next.next;
+    			tmp.next = null;
+    			deleteMe = false;
     		} else {
-    			prev = curr;
-    			curr = curr.next;
+    			prev = ptr;
+    			ptr = ptr.next;
     		}
     	}
     	
-    	return head;
+    	if (deleteMe) {
+    		if (prev == null) {
+    			head = null;
+    		} else {
+    			prev.next = null;
+    		}
+    	}
+    	
+        return head;
     }
-
+    
 	public static void main(String[] args) {
 
 		int[] intArray = { 1, 10, 3, 5, 67, 4, 9 };

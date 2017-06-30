@@ -19,11 +19,11 @@ public class ListTest {
 		assertTrue(minStack.top() == 0);
 		assertTrue(minStack.getMin() == -2);
 	}
-	
+
 	@Test
 	public void testValidParentheses() {
 		StackSolution sol = new StackSolution();
-		
+
 		assertTrue(sol.isValidParentheses("(()[{}]){}"));
 		assertTrue(sol.isValidParentheses("(()[k{a}]bc){d}"));
 		assertTrue(sol.isValidParentheses("()[]{}"));
@@ -31,15 +31,15 @@ public class ListTest {
 		assertFalse(sol.isValidParentheses("{]"));
 		assertFalse(sol.isValidParentheses("]a["));
 	}
-	
+
 	@Test
 	public void testAddTwoNumbers() {
 		ListSolution sol = new ListSolution();
-		final int[] n1 = {2,9,9};
-		final int[] n2 = {5,6,4,9};
+		final int[] n1 = { 2, 9, 9 };
+		final int[] n2 = { 5, 6, 4, 9 };
 		ListNode l1 = sol.constructList(n1);
 		ListNode l2 = sol.constructList(n2);
-		
+
 		ListNode sum = sol.addTwoNumbers(l1, l2);
 		System.out.println("L1 -> " + sol.outputList(l1));
 		System.out.println("L2 -> " + sol.outputList(l2));
@@ -49,14 +49,14 @@ public class ListTest {
 	@Test
 	public void testReverList() {
 		ListSolution sol = new ListSolution();
-		ListNode head = sol.constructList(new int[] {1,2,3,4,5,6});
+		ListNode head = sol.constructList(new int[] { 1, 2, 3, 4, 5, 6 });
 
 		System.out.println("Original list: " + sol.outputList(head));
 		System.out.println("Reversed list: " + sol.outputList(sol.reverseList(head)));
-		head = sol.constructList(new int[] {1,2,3,4,5,6});
+		head = sol.constructList(new int[] { 1, 2, 3, 4, 5, 6 });
 		System.out.println("Reversed list 2: " + sol.outputList(sol.reverseList2(head)));
 	}
-	
+
 	@Test
 	public void testRemoveElements() {
 		ListSolution sol = new ListSolution();
@@ -65,11 +65,26 @@ public class ListTest {
 		System.out.println("Original list: " + sol.outputList(head));
 		System.out.println("After removed: " + sol.outputList(sol.removeElements(head, 2)));
 	}
-	
+
 	@Test
 	public void testMergeTwoLists() {
 		ListSolution sol = new ListSolution();
-		
+
 	}
 
+	@Test
+	public void testDeleteSortedDuplicates() {
+		ListSolution sol = new ListSolution();
+		ListNode orig = sol.constructList(new int[] {1,2,3,3,3,4,4,5,5,6,6,6,6,6,7,8,9,9,9,10,10});
+		System.out.println("Original list: " + sol.outputList(orig));
+		System.out.println("After removed: " + sol.outputList(sol.deleteSortedDuplicates(orig)));
+	}
+	
+	@Test
+	public void testDeleteDuplicates2() {
+		ListSolution sol = new ListSolution();
+		ListNode orig = sol.constructList(new int[] {1,2,3,3,3,4,4,5,5,6,6,6,6,6,7,8,9,9,9,10,10});
+		System.out.println("Original list: " + sol.outputList(orig));
+		System.out.println("After removed: " + sol.outputList(sol.deleteDuplicates2(orig)));
+	}
 }
