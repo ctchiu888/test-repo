@@ -95,6 +95,14 @@ public class DynamicProgramming {
 		int idx = 0;
 		
 		for (int i =0; i < rows; i++) {
+			if (st.charAt(idx + cols - 1) == ' ' || st.charAt(idx + cols) == ' ') {
+				idx += cols;
+			} else {
+				idx += cols;
+				while (st.charAt(idx) != ' ' && idx > 0) {
+					idx--;
+				}
+			}
 			while (st.length()-idx <= cols - j) {
 				j += st.length()-idx;
 				idx = 0;

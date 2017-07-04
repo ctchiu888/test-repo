@@ -64,7 +64,7 @@ public class ArraySolution {
 				p1++;
 			}
 
-			if (p1 > p0 && p1 <nums.length) {
+			if (p1 > p0 && p1 < nums.length) {
 				nums[p0] = nums[p1];
 				nums[p1] = 0;
 			} else {
@@ -72,10 +72,10 @@ public class ArraySolution {
 			}
 		}
 	}
-	
+
 	public int findMaxConsecutiveOnes(int[] nums) {
 		int max = 0, p1 = 0, count = 0;
-		
+
 		while (p1 < nums.length) {
 			while (p1 < nums.length && nums[p1] != 1) {
 				p1++;
@@ -84,38 +84,62 @@ public class ArraySolution {
 			while (p1 < nums.length && nums[p1] == 1) {
 				p1++;
 				count++;
-			}			
+			}
 			max = Math.max(max, count);
 		}
-		
+
 		return max;
 	}
-	
-    public List<Integer> findDisappearedNumbers(int[] nums) {
-    	List<Integer> list = new ArrayList<>();
-    	int p = 0;
-    	
-    	while (p < nums.length) {
-    		if (nums[p] == -1) {
-    			p++;
-    		} else {
-    			int idx = nums[p] - 1;
-    			if (nums[idx] == -1) {
-    				p++;
-    			} else {
-    				nums[p] = nums[idx];
-        			nums[idx] = -1;	
-    			}
-    		}
-    	}
-    	
-    	for (int i = 0; i < nums.length; i++) {
-    		if (nums[i] != -1) {
-    			list.add(i+1);
-    		}
-    	}
-    	
-    	return list;
-    }
+
+	public List<Integer> findDisappearedNumbers(int[] nums) {
+		List<Integer> list = new ArrayList<>();
+		int p = 0;
+
+		while (p < nums.length) {
+			if (nums[p] == -1) {
+				p++;
+			} else {
+				int idx = nums[p] - 1;
+				if (nums[idx] == -1) {
+					p++;
+				} else {
+					nums[p] = nums[idx];
+					nums[idx] = -1;
+				}
+			}
+		}
+
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] != -1) {
+				list.add(i + 1);
+			}
+		}
+
+		return list;
+	}
+
+	public void sortColors(int[] nums) {
+		if (nums == null || nums.length < 2)
+			return;
+		int low = 0;
+		int high = nums.length - 1;
+
+		for (int i = low; i <= high;) {
+			if (nums[i] == 0) {
+				// move to the beginning
+				nums[i] = nums[low];
+				nums[low] = 0;
+				i++;
+				low++;
+			} else if (nums[i] == 2) {
+				// move to the end
+				nums[i] = nums[high];
+				nums[high] = 2;
+				high--;
+			} else {
+				i++;
+			}
+		}
+	}
 
 }

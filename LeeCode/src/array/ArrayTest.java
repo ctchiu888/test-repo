@@ -1,6 +1,6 @@
 package array;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -126,29 +126,42 @@ public class ArrayTest {
 	@Test
 	public void testFindMaxConsecutiveOnes() {
 		ArraySolution sol = new ArraySolution();
-		assertEquals(0, sol.findMaxConsecutiveOnes(new int[] { 0, 0, 0,0 }));
+		assertEquals(0, sol.findMaxConsecutiveOnes(new int[] { 0, 0, 0, 0 }));
 		assertEquals(3, sol.findMaxConsecutiveOnes(new int[] { 1, 0, 0, 1, 1, 0, 1, 1, 1 }));
 	}
-	
+
 	@Test
 	public void testFindDisappearedNumbers() {
 		ArraySolution sol = new ArraySolution();
-		
-		assertEquals(Arrays.asList(1,4,7), sol.findDisappearedNumbers(new int[] {2,5,3,6,6,3,2}));
-		assertEquals(Arrays.asList(1,7,11), sol.findDisappearedNumbers(new int[] {2,5,3,6,6,3,2,8,9,4,10}));
-		
+
+		assertEquals(Arrays.asList(1, 4, 7), sol.findDisappearedNumbers(new int[] { 2, 5, 3, 6, 6, 3, 2 }));
+		assertEquals(Arrays.asList(1, 7, 11),
+				sol.findDisappearedNumbers(new int[] { 2, 5, 3, 6, 6, 3, 2, 8, 9, 4, 10 }));
+
 	}
-	
+
 	@Test
 	public void testFindRadius() {
 		Heater sol = new Heater();
-		int [] houses = {282475249,622650073,984943658,144108930,470211272,101027544,457850878,458777923};
-		int [] heaters = {823564440,115438165,784484492,74243042,114807987,137522503,441282327,16531729,823378840,143542612}; 
-		
+		int[] houses = { 282475249, 622650073, 984943658, 144108930, 470211272, 101027544, 457850878, 458777923 };
+		int[] heaters = { 823564440, 115438165, 784484492, 74243042, 114807987, 137522503, 441282327, 16531729,
+				823378840, 143542612 };
+
 		assertEquals(161834419, sol.findRadius(houses, heaters));
-		assertEquals(1, sol.findRadius(new int[] {1,2,3,4}, new int[]{1,4}));
-		assertEquals(1, sol.findRadius(new int[] {1,2,3}, new int[]{2}));
-		assertEquals(3, sol.findRadius(new int[] {1,2,3,4,5,6,7,8}, new int[]{1,5}));
-		assertEquals(1, sol.findRadius(new int[] {1,2,3,4,5,6,7,8,9,10}, new int[]{2,3,4,5,6,7,8,9}));
+		assertEquals(1, sol.findRadius(new int[] { 1, 2, 3, 4 }, new int[] { 1, 4 }));
+		assertEquals(1, sol.findRadius(new int[] { 1, 2, 3 }, new int[] { 2 }));
+		assertEquals(3, sol.findRadius(new int[] { 1, 2, 3, 4, 5, 6, 7, 8 }, new int[] { 1, 5 }));
+		assertEquals(1,
+				sol.findRadius(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, new int[] { 2, 3, 4, 5, 6, 7, 8, 9 }));
+	}
+
+	@Test
+	public void testSortColors() {
+		ArraySolution sol = new ArraySolution();
+		int[] nums = { 1, 2, 0, 1, 2, 2, 0, 2};
+		sol.sortColors(nums);
+
+		assertTrue(Arrays.equals(new int[] { 0, 0, 1, 1, 2, 2, 2, 2 }, nums));
+
 	}
 }
