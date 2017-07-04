@@ -270,7 +270,8 @@ public class StringSolution {
 			}
 
 			String num = "";
-			while (j < abbr.length() && abbr.charAt(j) >= '0' && abbr.charAt(j) <= '9') {
+			while (j < abbr.length() && abbr.charAt(j) >= '0'
+					&& abbr.charAt(j) <= '9') {
 				num += abbr.charAt(j);
 				j++;
 			}
@@ -284,10 +285,40 @@ public class StringSolution {
 		return i == word.length() && j == abbr.length();
 	}
 
-	public boolean repeatedSubstringPattern(String s) {
-		int subLen = 2;
-
+	public boolean isMultipleOfString(String s, String sub) {
+		int idx = 0;
+		if (s.length() % sub.length() > 0 || sub.length() > s.length()/2) return false;
+		
+		while (idx <= (s.length()-sub.length())) {
+			String str = s.substring(idx, idx + sub.length());
+			if (sub.equals(str)) {
+				idx += sub.length();
+			} else {
+				return false;
+			}
+		}
+		
 		return true;
+	}
+	
+	public boolean repeatedSubstringPattern(String s) {
+		if (s == null || s.length() < 2)
+			return false;
+
+		char end = s.charAt(s.length() - 1);
+		int endIdx = s.indexOf(end);
+		String subString = s.substring(0, endIdx + 1);
+
+		while (endIdx >= 0 && endIdx <= s.length() / 2) {
+			if (isMultipleOfString(s, subString)) {
+				return true;
+			}
+			// find the next substring
+			endIdx = s.indexOf(end, endIdx+1);
+			subString = s.substring(0, endIdx + 1);
+		}
+
+		return false;
 	}
 
 	private boolean isSubstring(String subStr, String str, int start) {
@@ -326,11 +357,14 @@ public class StringSolution {
 
 	public static void main(String[] args) {
 
-		String[] arry = { null, "", "I am a good man", "hello world", "leetcode" };
+		String[] arry = { null, "", "I am a good man", "hello world",
+				"leetcode" };
 
 		for (String s : arry) {
-			System.out.println(s + " REVERSE: " + StringSolution.reverseString(s));
-			System.out.println(s + " REVERSE Vowel: " + StringSolution.reverseVowels(s));
+			System.out.println(s + " REVERSE: "
+					+ StringSolution.reverseString(s));
+			System.out.println(s + " REVERSE Vowel: "
+					+ StringSolution.reverseVowels(s));
 		}
 	}
 

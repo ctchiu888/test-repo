@@ -1,6 +1,7 @@
 package string;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -135,4 +136,20 @@ public class StringTest {
 		}
 	}
 
+	@Test
+	public void testIsMultipleOfString() {
+		StringSolution sol = new StringSolution();
+//		assertTrue(sol.isMultipleOfString("abaabaaba", "aba"));
+//		assertTrue(sol.isMultipleOfString("abcdaabcdaabcdaabcda", "abcda"));
+//		assertTrue(!sol.isMultipleOfString("abcdaabcdaabcdaabcd", "abcda"));
+		assertTrue(!sol.isMultipleOfString("abcdaabcdaabcdaabcd", "abcdaky"));		
+	}
+	
+	@Test
+	public void testRepeatedSubstringPattern() {
+		StringSolution sol = new StringSolution();
+		assertTrue(sol.repeatedSubstringPattern("abcdaabcdaabcdaabcda"));
+		assertTrue(!sol.repeatedSubstringPattern("abcdaabcdaabcdaabcd"));
+		assertTrue(!sol.repeatedSubstringPattern("ab"));
+	}
 }
