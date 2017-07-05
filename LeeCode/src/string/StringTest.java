@@ -11,6 +11,17 @@ import org.junit.Test;
 public class StringTest {
 
 	@Test
+	public void testReverseString() {
+		String[] arry = { null, "", "I am a good man", "hello world", "leetcode" };
+		StringSolution sol = new StringSolution();
+
+		for (String s : arry) {
+			System.out.println(s + " REVERSE: " + sol.reverseString(s));
+			System.out.println(s + " REVERSE Vowel: " + sol.reverseVowels(s));
+		}
+	}
+
+	@Test
 	public void testFindTheDifference() {
 		StringSolution sol = new StringSolution();
 
@@ -117,9 +128,10 @@ public class StringTest {
 	@Test
 	public void testStringIterator() {
 		try {
-			StringIterator iterator = new StringIterator("x6");; // new StringIterator("L10e2t1C1o1d1e1");
+			StringIterator iterator = new StringIterator("x6");
+			; // new StringIterator("L10e2t1C1o1d1e1");
 			assertEquals('x', iterator.next()); // return 'L'
-			//for (int i = 0; i < 9; i++) iterator.next();
+			// for (int i = 0; i < 9; i++) iterator.next();
 			assertEquals('x', iterator.next()); // return 'e'
 			assertEquals('x', iterator.next()); // return 'e'
 			assertEquals(true, iterator.hasNext());
@@ -139,17 +151,46 @@ public class StringTest {
 	@Test
 	public void testIsMultipleOfString() {
 		StringSolution sol = new StringSolution();
-//		assertTrue(sol.isMultipleOfString("abaabaaba", "aba"));
-//		assertTrue(sol.isMultipleOfString("abcdaabcdaabcdaabcda", "abcda"));
-//		assertTrue(!sol.isMultipleOfString("abcdaabcdaabcdaabcd", "abcda"));
-		assertTrue(!sol.isMultipleOfString("abcdaabcdaabcdaabcd", "abcdaky"));		
+		// assertTrue(sol.isMultipleOfString("abaabaaba", "aba"));
+		// assertTrue(sol.isMultipleOfString("abcdaabcdaabcdaabcda", "abcda"));
+		// assertTrue(!sol.isMultipleOfString("abcdaabcdaabcdaabcd", "abcda"));
+		assertTrue(!sol.isMultipleOfString("abcdaabcdaabcdaabcd", "abcdaky"));
 	}
-	
+
 	@Test
 	public void testRepeatedSubstringPattern() {
 		StringSolution sol = new StringSolution();
 		assertTrue(sol.repeatedSubstringPattern("abcdaabcdaabcdaabcda"));
 		assertTrue(!sol.repeatedSubstringPattern("abcdaabcdaabcdaabcd"));
 		assertTrue(!sol.repeatedSubstringPattern("ab"));
+	}
+
+	@Test
+	public void testCheckRecord() {
+		StringSolution sol = new StringSolution();
+		assertTrue(sol.checkRecord("PPALLP"));
+		assertTrue(!sol.checkRecord("PPALLL"));
+		assertTrue(sol.checkRecord("PPALLPLPLL"));
+		assertTrue(!sol.checkRecord("PPALLPA"));
+		assertTrue(sol.checkRecord("LALL"));
+	}
+	
+	@Test
+	public void testDetectCapitalUse() {
+		StringSolution sol = new StringSolution();
+		assertTrue(sol.detectCapitalUse("USA"));
+		assertTrue(sol.detectCapitalUse("United"));
+		assertTrue(sol.detectCapitalUse("leetcode"));
+		assertTrue(!sol.detectCapitalUse("LeetCode"));		
+	}
+	
+	@Test
+	public void testReverseStr() {
+		StringSolution sol = new StringSolution();
+		assertEquals("bacdfeg", sol.reverseStr("abcdefg", 2));
+		assertEquals("cbadeflkgpoi", sol.reverseStr("abcdefgklpoi", 3));
+		assertEquals("cb", sol.reverseStr("bc", 2));
+		
+		
 	}
 }

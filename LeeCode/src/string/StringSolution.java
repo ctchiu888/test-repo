@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class StringSolution {
-	public static String reverseString(String s) {
+	public String reverseString(String s) {
 		if (s == null)
 			return s;
 
@@ -24,7 +24,7 @@ public class StringSolution {
 		return String.valueOf(ch);
 	}
 
-	public static boolean isVowel(char c) {
+	public boolean isVowel(char c) {
 		switch (c) {
 		case 'a':
 		case 'e':
@@ -42,7 +42,7 @@ public class StringSolution {
 		return false;
 	}
 
-	public static String reverseVowels(String s) {
+	public String reverseVowels(String s) {
 		if (s == null)
 			return s;
 		char[] ch = s.toCharArray();
@@ -252,9 +252,6 @@ public class StringSolution {
 	}
 
 	public boolean validWordAbbreviation1(String word, String abbr) {
-		char[] w = word.toCharArray();
-		char[] a = abbr.toCharArray();
-
 		int i = 0;
 		int j = 0;
 		while (i < word.length() && j < abbr.length()) {
@@ -270,8 +267,7 @@ public class StringSolution {
 			}
 
 			String num = "";
-			while (j < abbr.length() && abbr.charAt(j) >= '0'
-					&& abbr.charAt(j) <= '9') {
+			while (j < abbr.length() && abbr.charAt(j) >= '0' && abbr.charAt(j) <= '9') {
 				num += abbr.charAt(j);
 				j++;
 			}
@@ -287,9 +283,10 @@ public class StringSolution {
 
 	public boolean isMultipleOfString(String s, String sub) {
 		int idx = 0;
-		if (s.length() % sub.length() > 0 || sub.length() > s.length()/2) return false;
-		
-		while (idx <= (s.length()-sub.length())) {
+		if (s.length() % sub.length() > 0 || sub.length() > s.length() / 2)
+			return false;
+
+		while (idx <= (s.length() - sub.length())) {
 			String str = s.substring(idx, idx + sub.length());
 			if (sub.equals(str)) {
 				idx += sub.length();
@@ -297,10 +294,10 @@ public class StringSolution {
 				return false;
 			}
 		}
-		
+
 		return true;
 	}
-	
+
 	public boolean repeatedSubstringPattern(String s) {
 		if (s == null || s.length() < 2)
 			return false;
@@ -314,7 +311,7 @@ public class StringSolution {
 				return true;
 			}
 			// find the next substring
-			endIdx = s.indexOf(end, endIdx+1);
+			endIdx = s.indexOf(end, endIdx + 1);
 			subString = s.substring(0, endIdx + 1);
 		}
 
@@ -355,17 +352,61 @@ public class StringSolution {
 		return -1;
 	}
 
-	public static void main(String[] args) {
+	public boolean checkRecord(String s) {
+		int countA = 0;
+		int countL = 0;
 
-		String[] arry = { null, "", "I am a good man", "hello world",
-				"leetcode" };
-
-		for (String s : arry) {
-			System.out.println(s + " REVERSE: "
-					+ StringSolution.reverseString(s));
-			System.out.println(s + " REVERSE Vowel: "
-					+ StringSolution.reverseVowels(s));
+		char[] ch = s.toCharArray();
+		for (char c : ch) {
+			if (c == 'A') {
+				if (++countA > 1)
+					return false;
+				countL = 0;
+			} else if (c == 'L') {
+				if (++countL > 2)
+					return false;
+			} else {
+				countL = 0;
+			}
 		}
+
+		return true;
 	}
 
+	public boolean detectCapitalUse(String word) {
+		String firstCh = word.substring(0, 1);
+		if (firstCh.equals(firstCh.toUpperCase())) {
+			if (word.equals(word.toUpperCase()) || word.substring(1).equals(word.substring(1).toLowerCase())) {
+				return true;
+			}
+		} else {
+			if (word.equals(word.toLowerCase())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public String reverseStr(String s, int k) {
+		int n = s.length() / k;
+		StringBuilder sb = new StringBuilder();
+
+		for (int i = 0; i < n; i++) {
+			if ((i + 1) * k <= s.length()) {
+				if (i % 2 == 0) {
+					sb.append(reverseString(s.substring(i * k, (i + 1) * k)));
+				} else {
+					sb.append(s.substring(i * k, (i + 1) * k));
+				}
+			}
+		}
+
+		if (n % 2 == 0 && n*k < s.length()) {
+			sb.append(reverseString(s.substring(n * k)));
+		} else {
+			sb.append(s.substring(n * k));
+		}
+
+		return sb.toString();
+	}
 }

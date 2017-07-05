@@ -142,4 +142,23 @@ public class ArraySolution {
 		}
 	}
 
+	public int findUnsortedSubarray(int[] nums) {
+		if (nums == null || nums.length == 1)
+			return 0;
+		int start = 0;
+		int end = nums.length - 1;
+
+		while (nums[start] < nums[end] && start < end) {
+			if (nums[end] >= nums[end - 1] && nums[end] > nums[start]) {
+				end--;
+			}
+
+			if (nums[start] <= nums[start + 1] && nums[start] < nums[end]) {
+				start++;
+			}
+		}
+
+		return end - start + 1;
+	}
+
 }
