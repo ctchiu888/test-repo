@@ -5,6 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import utils.ListUtil;
+
 public class ListTest {
 
 	@Test
@@ -37,33 +39,33 @@ public class ListTest {
 		ListSolution sol = new ListSolution();
 		final int[] n1 = { 2, 9, 9 };
 		final int[] n2 = { 5, 6, 4, 9 };
-		ListNode l1 = sol.constructList(n1);
-		ListNode l2 = sol.constructList(n2);
+		ListNode l1 = ListUtil.constructList(n1);
+		ListNode l2 = ListUtil.constructList(n2);
 
 		ListNode sum = sol.addTwoNumbers(l1, l2);
-		System.out.println("L1 -> " + sol.outputList(l1));
-		System.out.println("L2 -> " + sol.outputList(l2));
-		System.out.println("Sum -> " + sol.outputList(sum));
+		System.out.println("L1 -> " + ListUtil.outputListNode(l1));
+		System.out.println("L2 -> " + ListUtil.outputListNode(l2));
+		System.out.println("Sum -> " + ListUtil.outputListNode(sum));
 	}
 
 	@Test
 	public void testReverList() {
 		ListSolution sol = new ListSolution();
-		ListNode head = sol.constructList(new int[] { 1, 2, 3, 4, 5, 6 });
+		ListNode head = ListUtil.constructList(new int[] { 1, 2, 3, 4, 5, 6 });
 
-		System.out.println("Original list: " + sol.outputList(head));
-		System.out.println("Reversed list: " + sol.outputList(sol.reverseList(head)));
-		head = sol.constructList(new int[] { 1, 2, 3, 4, 5, 6 });
-		System.out.println("Reversed list 2: " + sol.outputList(sol.reverseList2(head)));
+		System.out.println("Original list: " + ListUtil.outputListNode(head));
+		System.out.println("Reversed list: " + ListUtil.outputListNode(sol.reverseList(head)));
+		head = ListUtil.constructList(new int[] { 1, 2, 3, 4, 5, 6 });
+		System.out.println("Reversed list 2: " + ListUtil.outputListNode(sol.reverseList2(head)));
 	}
 
 	@Test
 	public void testRemoveElements() {
 		ListSolution sol = new ListSolution();
 		// ListNode head = sol.constructList(new int[] {6,1,2,3,6,4,5,6});
-		ListNode head = sol.constructList(new int[] {});
-		System.out.println("Original list: " + sol.outputList(head));
-		System.out.println("After removed: " + sol.outputList(sol.removeElements(head, 2)));
+		ListNode head = ListUtil.constructList(new int[] {});
+		System.out.println("Original list: " + ListUtil.outputListNode(head));
+		System.out.println("After removed: " + ListUtil.outputListNode(sol.removeElements(head, 2)));
 	}
 
 	@Test
@@ -75,16 +77,16 @@ public class ListTest {
 	@Test
 	public void testDeleteSortedDuplicates() {
 		ListSolution sol = new ListSolution();
-		ListNode orig = sol.constructList(new int[] {1,2,3,3,3,4,4,5,5,6,6,6,6,6,7,8,9,9,9,10,10});
-		System.out.println("Original list: " + sol.outputList(orig));
-		System.out.println("After removed: " + sol.outputList(sol.deleteSortedDuplicates(orig)));
+		ListNode orig = ListUtil.constructList(new int[] {1,2,3,3,3,4,4,5,5,6,6,6,6,6,7,8,9,9,9,10,10});
+		System.out.println("Original list: " + ListUtil.outputListNode(orig));
+		System.out.println("After removed: " + ListUtil.outputListNode(sol.deleteSortedDuplicates(orig)));
 	}
 	
 	@Test
 	public void testDeleteDuplicates2() {
 		ListSolution sol = new ListSolution();
-		ListNode orig = sol.constructList(new int[] {1,2,3,3,3,4,4,5,5,6,6,6,6,6,7,8,9,9,9,10,10});
-		System.out.println("Original list: " + sol.outputList(orig));
-		System.out.println("After removed: " + sol.outputList(sol.deleteDuplicates2(orig)));
+		ListNode orig = ListUtil.constructList(new int[] {1,2,3,3,3,4,4,5,5,6,6,6,6,6,7,8,9,9,9,10,10});
+		System.out.println("Original list: " + ListUtil.outputListNode(orig));
+		System.out.println("After removed: " + ListUtil.outputListNode(sol.deleteDuplicates2(orig)));
 	}
 }

@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import utils.ListUtil;
+
 public class MathTest {
 
 	@Test
@@ -59,7 +61,12 @@ public class MathTest {
 	public void testMissingNumber() {
 		MathSolution sol = new MathSolution();
 		assertEquals(2, sol.missingNumber(new int[] {0,3,1, 4, 5}));
-		
+	}
+	
+	@Test
+	public void testReadBinaryWatch() {
+		Bit bit = new Bit();
+		ListUtil.outputList(bit.readBinaryWatch(4));
 	}
 
 }

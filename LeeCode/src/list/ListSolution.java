@@ -22,30 +22,6 @@ public class ListSolution {
 		return result;
 	}
 
-	public ListNode constructList(int[] nums) {
-		if (nums.length == 0)
-			return null;
-		ListNode head = new ListNode(nums[0]);
-		ListNode p = head;
-
-		for (int i = 1; i < nums.length; i++) {
-			p.next = new ListNode(nums[i]);
-			p = p.next;
-		}
-
-		return head;
-	}
-
-	public String outputList(ListNode l) {
-		StringBuilder sb = new StringBuilder();
-		while (l != null) {
-			sb.append(l.val).append(" ");
-			l = l.next;
-		}
-
-		return sb.toString();
-	}
-
 	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 		ListNode head = null;
 		ListNode p1 = l1;
