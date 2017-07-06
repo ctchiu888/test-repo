@@ -145,20 +145,28 @@ public class ArraySolution {
 	public int findUnsortedSubarray(int[] nums) {
 		if (nums == null || nums.length == 1)
 			return 0;
-		int start = 0;
-		int end = nums.length - 1;
+		int l = 0;
+		int r = nums.length - 1;
+		int min = nums[r];
+		int max = nums[0];
 
-		while (nums[start] < nums[end] && start < end) {
-			if (nums[end] >= nums[end - 1] && nums[end] > nums[start]) {
-				end--;
-			}
-
-			if (nums[start] <= nums[start + 1] && nums[start] < nums[end]) {
-				start++;
-			}
+		while (l < nums.length - 1 && nums[l] <= nums[l + 1]) {
+			max = Math.max(max, nums[l]);
+			l++;
+		}
+		while (r > 0 && nums[r] >= nums[r - 1]) {
+			min = Math.min(min, nums[r]);
+			r--;
 		}
 
-		return end - start + 1;
+		while (l > 0 && nums[l] > min) {
+			l--;
+		}
+
+		while (r < nums.length-1 && nums[r] < max) {
+			r++;
+		}
+		return r - l + 1;
 	}
 
 }
