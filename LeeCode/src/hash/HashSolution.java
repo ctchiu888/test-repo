@@ -1,5 +1,6 @@
 package hash;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -147,6 +148,36 @@ public class HashSolution {
 		return false;
 	}
 
+	private String getRankString(int rank) {
+		String s = Integer.toString(rank);
+		if (rank == 1) {
+			s = "Gold Medal";
+		} else if (rank == 2) {
+			s = "Silver Medal";
+		} else if (rank == 3) {
+			s = "Bronze Medal";
+		}
+		
+		return s;
+	}
+	
+    public String[] findRelativeRanks(int[] nums) {
+    	String[] rank = new String[nums.length];
+    	
+    	Map<Integer, Integer> m = new HashMap<>();
+    	for (int i = 0; i < nums.length; i++) {
+    		m.put(nums[i], i);
+    	}
+    	
+    	Arrays.sort(nums);
+    	for (int j = nums.length-1; j >=0; j--) {
+    		int idx = m.get(nums[j]);
+    		rank[idx] = getRankString(nums.length-j);
+    	}
+    	
+        return rank;
+    }
+    
 	public static void main(String[] args) {
 		String[] sList = { "aab", "bbbe", "code", "carerac", "asdfdaudfduuaesua" };
 

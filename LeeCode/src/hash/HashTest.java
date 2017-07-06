@@ -132,4 +132,14 @@ public class HashTest {
 		assertEquals(true, sol.containsNearbyDuplicate(new int[]{1,2,5,3,1,4,5,1}, 3));
 		assertEquals(false, sol.containsNearbyDuplicate(new int[]{1,2,5,3,1,4,5}, 3));
 	}
+	
+	@Test
+	public void testFindRelativeRanks() {
+		HashSolution sol = new HashSolution();
+		int[] nums = new int[] {5,4,3,1,7,9,6};
+		String[] rank = sol.findRelativeRanks(nums);
+		
+		System.out.println("test done");
+		
+	}
 }

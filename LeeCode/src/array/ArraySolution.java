@@ -1,6 +1,7 @@
 package array;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -142,6 +143,23 @@ public class ArraySolution {
 		}
 	}
 
+	public void merge(int[] nums1, int m, int[] nums2, int n) {
+		int k = m + n - 1;
+		int i = m - 1;
+		int j = n - 1;
+		while (j >= 0 && i >= 0) {
+			if (nums1[i] >= nums2[j]) {
+				nums1[k--] = nums1[i--];
+			} else {
+				nums1[k--] = nums2[j--];
+			}
+		}
+		
+		while (j >= 0) {
+			nums1[k--] = nums2[j--];
+		}
+	}
+
 	public int findUnsortedSubarray(int[] nums) {
 		if (nums == null || nums.length == 1)
 			return 0;
@@ -163,7 +181,7 @@ public class ArraySolution {
 			l--;
 		}
 
-		while (r < nums.length-1 && nums[r] < max) {
+		while (r < nums.length - 1 && nums[r] < max) {
 			r++;
 		}
 		return r - l + 1;
