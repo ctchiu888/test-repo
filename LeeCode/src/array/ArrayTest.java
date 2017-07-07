@@ -171,7 +171,7 @@ public class ArrayTest {
 //		assertEquals(2, sol.findUnsortedSubarray(new int[] { 2, 1 }));
 //		assertEquals(5, sol.findUnsortedSubarray(new int[] { 2, 6, 4, 8, 10, 9, 15 }));
 		assertEquals(6, sol.findUnsortedSubarray(new int[] { 2, 2, 2, 2, 2, 1 }));
-		assertEquals(7, sol.findUnsortedSubarray(new int[] { 2, 2, 2, 2, 2, 1, 1, 3 }));
+		assertEquals(7, sol.findUnsortedSubarray(new int[] { 1, 2, 2, 2, 2, 2, 1, 1, 3 }));
 	}
 	
 	@Test

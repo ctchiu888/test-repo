@@ -154,12 +154,34 @@ public class ArraySolution {
 				nums1[k--] = nums2[j--];
 			}
 		}
-		
+
 		while (j >= 0) {
 			nums1[k--] = nums2[j--];
 		}
 	}
 
+	/**
+	 * 581. Shortest Unsorted Continuous Subarray
+	 * 
+	 * Given an integer array, you need to find one continuous subarray that if
+	 * you only sort this subarray in ascending order, then the whole array will
+	 * be sorted in ascending order, too.
+	 * 
+	 * You need to find the shortest such subarray and output its length.
+	 * 
+	 * Example
+	 * 
+	 * 1: Input: [2, 6, 4, 8, 10, 9, 15] Output: 5
+	 * 
+	 * Explanation: You need to sort [6, 4, 8, 10, 9] in ascending order to make
+	 * the whole array sorted in ascending order.
+	 * 
+	 * Note: Then length of the input array is in range [1, 10,000]. The input
+	 * array may contain duplicates, so ascending order here means <=.
+	 * 
+	 * @param nums
+	 * @return
+	 */
 	public int findUnsortedSubarray(int[] nums) {
 		if (nums == null || nums.length == 1)
 			return 0;
@@ -169,21 +191,27 @@ public class ArraySolution {
 		int max = nums[0];
 
 		while (l < nums.length - 1 && nums[l] <= nums[l + 1]) {
-			max = Math.max(max, nums[l]);
 			l++;
 		}
+		max = nums[l];
+		
 		while (r > 0 && nums[r] >= nums[r - 1]) {
-			min = Math.min(min, nums[r]);
 			r--;
 		}
+		min = nums[r];
 
-		while (l > 0 && nums[l] > min) {
+		while (l >= 0 && nums[l] > min) {
 			l--;
 		}
+		
+		if (l >= 0) l++; 
+		max = nums[l];
 
-		while (r < nums.length - 1 && nums[r] < max) {
+		while (r <= nums.length - 1 && nums[r] < max) {
 			r++;
 		}
+		if (r <= nums.length - 1) r--;
+		
 		return r - l + 1;
 	}
 
