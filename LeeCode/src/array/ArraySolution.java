@@ -1,7 +1,6 @@
 package array;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -187,32 +186,33 @@ public class ArraySolution {
 			return 0;
 		int l = 0;
 		int r = nums.length - 1;
-		int min = nums[r];
-		int max = nums[0];
+		int min = Integer.MAX_VALUE;
+		int max = Integer.MIN_VALUE;
 
 		while (l < nums.length - 1 && nums[l] <= nums[l + 1]) {
 			l++;
 		}
-		max = nums[l];
-		
-		while (r > 0 && nums[r] >= nums[r - 1]) {
+
+		if (l == nums.length - 1)
+			return 0;
+
+		while (nums[r] >= nums[r - 1]) {
 			r--;
 		}
-		min = nums[r];
+
+		for (int k = l; k <= r; k++) {
+			min = Math.min(min, nums[k]);
+			max = Math.max(max, nums[k]);
+		}
 
 		while (l >= 0 && nums[l] > min) {
 			l--;
 		}
-		
-		if (l >= 0) l++; 
-		max = nums[l];
 
 		while (r <= nums.length - 1 && nums[r] < max) {
 			r++;
 		}
-		if (r <= nums.length - 1) r--;
-		
-		return r - l + 1;
+		return r - l - 1;
 	}
 
 }

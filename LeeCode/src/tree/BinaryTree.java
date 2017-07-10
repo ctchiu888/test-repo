@@ -252,4 +252,92 @@ public class BinaryTree {
 
 		return Math.abs(l - r) <= 1 && isBalanced(root.left) && isBalanced(root.right);
 	}
+
+	/**
+	 * 530. Minimum Absolute Difference in BST
+	 * 
+	 * Given a binary search tree with non-negative values, find the minimum
+	 * absolute difference between values of any two nodes.
+	 * 
+	 * BST is an inorder sorted tree
+	 * 
+	 * @param root
+	 * @return
+	 */
+
+	int minDiff = Integer.MAX_VALUE;
+	TreeNode prev;
+
+	public int getMinimumDifference(TreeNode root) {
+		inorderMinDiff(root);
+		return minDiff;
+	}
+
+	public void inorderMinDiff(TreeNode root) {
+		if (root == null)
+			return;
+		inorderMinDiff(root.left);
+		// calculate minDiff
+		if (prev != null) {
+			minDiff = Math.min(minDiff, root.val - prev.val);
+		}
+		prev = root;
+		inorderMinDiff(root.right);
+	}
+
+	Integer prevVal;
+	int count = 1;
+	int max = Integer.MIN_VALUE;
+
+	/**
+	 * 501. Find Mode in Binary Search Tree
+	 * 
+	 * Given a binary search tree (BST) with duplicates, find all the mode(s)
+	 * (the most frequently occurred element) in the given BST.
+	 * 
+	 * Assume a BST is defined as follows:
+	 * 
+	 * The left subtree of a node contains only nodes with keys less than or
+	 * equal to the node's key. The right subtree of a node contains only nodes
+	 * with keys greater than or equal to the node's key. Both the left and
+	 * right subtrees must also be binary search trees.
+	 * 
+	 * @param root
+	 * @return
+	 */
+	public int[] findMode(TreeNode root) {
+		List<Integer> modeList = new ArrayList<>();
+		traverse(root, modeList);
+		int[] res = new int[modeList.size()];
+		for (int i = 0; i < res.length; i++) {
+			res[i] = modeList.get(i);
+		}
+		return res;
+	}
+	// [1,1,2,null,null,2,3]
+
+	public void traverse(TreeNode root, List<Integer> list) {
+		if (root == null)
+			return;
+
+		traverse(root.left, list);
+		if (prevVal != null) {
+			if (root.val == prevVal) {
+				count++;
+			} else {
+				count = 1;
+			}
+		}
+
+		if (max < count) {
+			max = count;
+			list.clear();
+			list.add(root.val);
+		} else if (max == count) {
+			list.add(root.val);
+		}
+
+		prevVal = root.val;
+		traverse(root.right, list);
+	}
 }

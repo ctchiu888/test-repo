@@ -401,7 +401,7 @@ public class StringSolution {
 			}
 		}
 
-		if (n % 2 == 0 && n*k < s.length()) {
+		if (n % 2 == 0 && n * k < s.length()) {
 			sb.append(reverseString(s.substring(n * k)));
 		} else {
 			sb.append(s.substring(n * k));
@@ -409,4 +409,9 @@ public class StringSolution {
 
 		return sb.toString();
 	}
+
+	public int findLUSlength(String a, String b) {
+		return a.equals(b) ? -1 : Math.max(a.length(), b.length());
+	}
+
 }

@@ -167,18 +167,18 @@ public class ArrayTest {
 	@Test
 	public void testFindUnsortedSubarray() {
 		ArraySolution sol = new ArraySolution();
-//		assertEquals(0, sol.findUnsortedSubarray(new int[] { 1, 2 }));
-//		assertEquals(2, sol.findUnsortedSubarray(new int[] { 2, 1 }));
-//		assertEquals(5, sol.findUnsortedSubarray(new int[] { 2, 6, 4, 8, 10, 9, 15 }));
+		assertEquals(0, sol.findUnsortedSubarray(new int[] { 1, 2 }));
+		assertEquals(2, sol.findUnsortedSubarray(new int[] { 2, 1 }));
+		assertEquals(5, sol.findUnsortedSubarray(new int[] { 2, 6, 4, 8, 10, 9, 15 }));
 		assertEquals(6, sol.findUnsortedSubarray(new int[] { 2, 2, 2, 2, 2, 1 }));
 		assertEquals(7, sol.findUnsortedSubarray(new int[] { 1, 2, 2, 2, 2, 2, 1, 1, 3 }));
 	}
-	
+
 	@Test
 	public void testMerge() {
 		ArraySolution sol = new ArraySolution();
-		int[] nums1 = {2,2,4,6,8,10,11,-1,-1,-1,-1,-1,-1};
-		int[] nums2 = {1,4,4,7,9,12};
+		int[] nums1 = { 2, 2, 4, 6, 8, 10, 11, -1, -1, -1, -1, -1, -1 };
+		int[] nums2 = { 1, 4, 4, 7, 9, 12 };
 		sol.merge(nums1, 7, nums2, 6);
 	}
 }
