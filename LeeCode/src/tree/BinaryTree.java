@@ -28,7 +28,8 @@ public class BinaryTree {
 			}
 		}
 
-		if (Math.abs(target - (double) root.val) > Math.abs((double) closest - target)) {
+		if (Math.abs(target - (double) root.val) > Math.abs((double) closest
+				- target)) {
 			return closest;
 		}
 
@@ -66,7 +67,8 @@ public class BinaryTree {
 		if (leftDepth == rightDepth) {
 			count = (1 << leftDepth) - 1;
 		} else {
-			count = 1 + countCompleteTreeNodes(root.left) + countCompleteTreeNodes(root.right);
+			count = 1 + countCompleteTreeNodes(root.left)
+					+ countCompleteTreeNodes(root.right);
 		}
 
 		return count;
@@ -84,7 +86,8 @@ public class BinaryTree {
 	public int longestConsecutive(TreeNode root) {
 		if (root == null)
 			return 0;
-		return Math.max(longCon(root.left, 1, root.val), longCon(root.right, 1, root.val));
+		return Math.max(longCon(root.left, 1, root.val),
+				longCon(root.right, 1, root.val));
 	}
 
 	private String convertListToPathString(List<String> path) {
@@ -101,7 +104,8 @@ public class BinaryTree {
 		return sb.toString();
 	}
 
-	private void listBinaryTreePaths(TreeNode root, List<String> onePath, List<String> paths) {
+	private void listBinaryTreePaths(TreeNode root, List<String> onePath,
+			List<String> paths) {
 		if (root == null)
 			return;
 
@@ -125,6 +129,54 @@ public class BinaryTree {
 		return paths;
 	}
 
+	/**
+	 * 235. Lowest Common Ancestor of a Binary Search Tree
+	 * 
+	 * Given a binary search tree (BST), find the lowest common ancestor (LCA)
+	 * of two given nodes in the BST.
+	 * 
+	 * According to the definition of LCA on Wikipedia: ¡°The lowest common
+	 * ancestor is defined between two nodes v and w as the lowest node in T
+	 * that has both v and w as descendants (where we allow a node to be a
+	 * descendant of itself).¡±
+	 * 
+	 * @param root
+	 * @param p
+	 * @param q
+	 * @return
+	 */
+	public TreeNode lowestCommonAncestorBST(TreeNode root, TreeNode p,
+			TreeNode q) {
+		if (root == null) return null;
+		if (p == null || q == null) return root;
+
+		while ((root.val - p.val) * (root.val - q.val) > 0) {
+			if (p.val > root.val) {
+				root = root.right;
+			} else {
+				root = root.left;
+			}
+		}
+
+		return root;
+	}
+
+	/**
+	 * 236. Lowest Common Ancestor of a Binary Tree
+	 * 
+	 * Given a binary tree, find the lowest common ancestor (LCA) of two given
+	 * nodes in the tree.
+	 * 
+	 * According to the definition of LCA on Wikipedia: ¡°The lowest common
+	 * ancestor is defined between two nodes v and w as the lowest node in T
+	 * that has both v and w as descendants (where we allow a node to be a
+	 * descendant of itself).¡±
+	 * 
+	 * @param root
+	 * @param p
+	 * @param q
+	 * @return
+	 */
 	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 		// I am the LCA if
 		// (1) p in left-subtree and q in right subtree, or vice versa
@@ -209,7 +261,8 @@ public class BinaryTree {
 			return true;
 		if (p == null || q == null)
 			return false;
-		return (p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right));
+		return (p.val == q.val && isSameTree(p.left, q.left) && isSameTree(
+				p.right, q.right));
 	}
 
 	public TreeNode sortedArrayToBST(int[] nums) {
@@ -220,7 +273,8 @@ public class BinaryTree {
 			return new TreeNode(nums[0]);
 		}
 
-		int midIndex = (nums.length % 2 == 0) ? nums.length / 2 - 1 : nums.length / 2;
+		int midIndex = (nums.length % 2 == 0) ? nums.length / 2 - 1
+				: nums.length / 2;
 		TreeNode root = new TreeNode(nums[midIndex]);
 
 		if (midIndex - 1 >= 0) {
@@ -230,7 +284,8 @@ public class BinaryTree {
 		}
 
 		if (midIndex + 1 < nums.length) {
-			root.right = sortedArrayToBST(Arrays.copyOfRange(nums, midIndex + 1, nums.length));
+			root.right = sortedArrayToBST(Arrays.copyOfRange(nums,
+					midIndex + 1, nums.length));
 		} else {
 			root.right = null;
 		}
@@ -250,7 +305,8 @@ public class BinaryTree {
 		int l = treeDepth(root.left);
 		int r = treeDepth(root.right);
 
-		return Math.abs(l - r) <= 1 && isBalanced(root.left) && isBalanced(root.right);
+		return Math.abs(l - r) <= 1 && isBalanced(root.left)
+				&& isBalanced(root.right);
 	}
 
 	/**
@@ -314,6 +370,7 @@ public class BinaryTree {
 		}
 		return res;
 	}
+
 	// [1,1,2,null,null,2,3]
 
 	public void traverse(TreeNode root, List<Integer> list) {
