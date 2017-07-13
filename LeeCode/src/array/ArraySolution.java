@@ -215,4 +215,85 @@ public class ArraySolution {
 		return r - l - 1;
 	}
 
+	/**
+	 * 370. Range Addition
+	 * 
+	 * Assume you have an array of length n initialized with all 0's and are
+	 * given k update operations.
+	 * 
+	 * Each operation is represented as a triplet: [startIndex, endIndex, inc]
+	 * which increments each element of subarray A[startIndex ... endIndex]
+	 * (startIndex and endIndex inclusive) with inc.
+	 * 
+	 * Return the modified array after all k operations were executed.
+	 * 
+	 * @param length
+	 * @param updates
+	 * @return
+	 */
+	public int[] getModifiedArray(int length, int[][] updates) {
+
+		int[] res = new int[length];
+		int startIndex = 0;
+		int endIndex = 0;
+		int inc = 0;
+		for (int i = 0; i < updates.length; i++) {
+			startIndex = updates[i][0];
+			endIndex = updates[i][1];
+			inc = updates[i][2];
+
+			res[startIndex] += inc;
+			if (endIndex < length - 1) {
+				res[endIndex + 1] -= inc;
+			}
+		}
+
+		for (int i = 1; i < res.length; i++) {
+			res[i] += res[i - 1];
+		}
+
+		return res;
+	}
+
+	/**
+	 * 163. Missing Ranges
+	 * 
+	 * Given a sorted integer array where the range of elements are in the
+	 * inclusive range [lower, upper], return its missing ranges.
+	 * 
+	 * For example, given [0, 1, 3, 50, 75], lower = 0 and upper = 99, return
+	 * ["2", "4->49", "51->74", "76->99"].
+	 * 
+	 * @param nums
+	 * @param lower
+	 * @param upper
+	 * @return
+	 */
+	public List<String> findMissingRanges(int[] nums, int lower, int upper) {
+		List<String> list = new ArrayList<>();
+		int start = lower;
+		int end;
+
+		for (int i = 0; i < nums.length; i++) {
+			end = nums[i];
+			addMissingRange(start, end, list);
+			start = end + 1;
+		}
+
+		if (start <= upper) {
+			addMissingRange(start, upper+1, list);
+		}
+
+		return list;
+	}
+
+	private void addMissingRange(int start, int end, List<String> list) {
+		if (end <= start) {
+		} else if (end - start == 1) {
+			list.add("" + start);
+		} else {
+			list.add(start + "->" + (end - 1));
+		}
+	}
+
 }

@@ -181,4 +181,25 @@ public class ArrayTest {
 		int[] nums2 = { 1, 4, 4, 7, 9, 12 };
 		sol.merge(nums1, 7, nums2, 6);
 	}
+
+	@Test
+	public void testGetModifiedArray() {
+		ArraySolution sol = new ArraySolution();
+		int[][] updates = { { 1, 3, 2 }, { 2, 4, 3 }, { 0, 2, -2 } };
+		int[] res = sol.getModifiedArray(5, updates);
+		
+		System.out.print("[");
+		for (int n : res) {
+			System.out.print(n + " ");
+		}
+		System.out.print("]");
+	}
+	
+	@Test
+	public void testFindMissingRanges() {
+		ArraySolution sol = new ArraySolution();
+		
+		int[] nums = {-2147483648,-2147483648,0,2147483647,2147483647};
+		sol.findMissingRanges(nums, -2147483648, 2147483647);
+	}
 }
