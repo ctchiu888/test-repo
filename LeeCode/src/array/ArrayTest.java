@@ -187,19 +187,20 @@ public class ArrayTest {
 		ArraySolution sol = new ArraySolution();
 		int[][] updates = { { 1, 3, 2 }, { 2, 4, 3 }, { 0, 2, -2 } };
 		int[] res = sol.getModifiedArray(5, updates);
-		
+
 		System.out.print("[");
 		for (int n : res) {
 			System.out.print(n + " ");
 		}
 		System.out.print("]");
 	}
-	
+
 	@Test
 	public void testFindMissingRanges() {
 		ArraySolution sol = new ArraySolution();
-		
-		int[] nums = {-2147483648,-2147483648,0,2147483647,2147483647};
-		sol.findMissingRanges(nums, -2147483648, 2147483647);
+
+		int[] nums = { 1, 1, 1 }; // {-2147483648,-2147483648, 0, 2147483647,
+									// 2147483647};
+		sol.findMissingRanges(nums, 1, 1);
 	}
 }

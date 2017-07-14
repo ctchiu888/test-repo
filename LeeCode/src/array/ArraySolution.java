@@ -272,27 +272,32 @@ public class ArraySolution {
 	public List<String> findMissingRanges(int[] nums, int lower, int upper) {
 		List<String> list = new ArrayList<>();
 		int start = lower;
-		int end;
+		int end = Integer.MIN_VALUE;
 
 		for (int i = 0; i < nums.length; i++) {
 			end = nums[i];
-			addMissingRange(start, end, list);
-			start = end + 1;
+			if (start < end) {
+				addMissingRange(start, end - 1, list);
+				if (end == upper) break;
+
+			}
+
+			if (end < upper) start = end + 1;
 		}
 
-		if (start <= upper) {
-			addMissingRange(start, upper+1, list);
+		if (end < upper && start <= upper) {
+			addMissingRange(start, upper, list);
 		}
 
 		return list;
 	}
 
 	private void addMissingRange(int start, int end, List<String> list) {
-		if (end <= start) {
-		} else if (end - start == 1) {
+		if (end < start) {
+		} else if (end == start) {
 			list.add("" + start);
 		} else {
-			list.add(start + "->" + (end - 1));
+			list.add(start + "->" + end);
 		}
 	}
 
