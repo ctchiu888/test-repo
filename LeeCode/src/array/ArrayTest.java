@@ -203,4 +203,16 @@ public class ArrayTest {
 									// 2147483647};
 		sol.findMissingRanges(nums, 1, 1);
 	}
+
+	@Test
+	public void testNextPermutation() {
+		ArraySolution sol = new ArraySolution();
+		int[] nums = {1,1,5}; // {3,2,1}; // { 1, 2, 3 }; // {1,3,2};
+		sol.nextPermutation(nums);
+		System.out.print("[");
+		for (int n : nums) {
+			System.out.print(n + " ");
+		}
+		System.out.print("]");
+	}
 }

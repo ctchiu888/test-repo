@@ -1,6 +1,7 @@
 package array;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -278,11 +279,13 @@ public class ArraySolution {
 			end = nums[i];
 			if (start < end) {
 				addMissingRange(start, end - 1, list);
-				if (end == upper) break;
+				if (end == upper)
+					break;
 
 			}
 
-			if (end < upper) start = end + 1;
+			if (end < upper)
+				start = end + 1;
 		}
 
 		if (end < upper && start <= upper) {
@@ -298,6 +301,65 @@ public class ArraySolution {
 			list.add("" + start);
 		} else {
 			list.add(start + "->" + end);
+		}
+	}
+
+	/**
+	 * 31. Next Permutation
+	 * 
+	 * Implement next permutation, which rearranges numbers into the
+	 * lexicographically next greater permutation of numbers.
+	 * 
+	 * If such arrangement is not possible, it must rearrange it as the lowest
+	 * possible order (ie, sorted in ascending order).
+	 * 
+	 * The replacement must be in-place, do not allocate extra memory.
+	 * 
+	 * Here are some examples. Inputs are in the left-hand column and its
+	 * corresponding outputs are in the right-hand column.
+	 * 
+	 * 1,2,3 -> 1,3,2
+	 * 
+	 * 3,2,1 -> 1,2,3
+	 * 
+	 * 1,1,5 -> 1,5,1
+	 * 
+	 * @param nums
+	 */
+	public void nextPermutation(int[] nums) {
+		if (nums.length <= 1)
+			return;
+
+		int i = nums.length - 2;
+		for (; i >= 0; i--) {
+			if (nums[i] < nums[i + 1]) {
+				break;
+			}
+		}
+
+		if (i == -1) {
+			Arrays.sort(nums);
+			return;
+		}
+
+		int j = nums.length - 1;
+		for (; j > i+1; j--) {
+			if (nums[j] > nums[i]) {
+				break;
+			}
+		}
+
+		if (j == i) {
+			Arrays.sort(nums);
+			return;
+		}
+
+		int temp = nums[j];
+		nums[j] = nums[i];
+		nums[i] = temp;
+
+		if (i < nums.length - 1) {
+			Arrays.sort(nums, i + 1, nums.length);
 		}
 	}
 

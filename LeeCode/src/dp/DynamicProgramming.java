@@ -1,5 +1,7 @@
 package dp;
 
+import java.util.Arrays;
+
 public class DynamicProgramming {
 
 	/**
@@ -93,8 +95,8 @@ public class DynamicProgramming {
 		String st = sb.toString();
 		int j = 0;
 		int idx = 0;
-		
-		for (int i =0; i < rows; i++) {
+
+		for (int i = 0; i < rows; i++) {
 			if (st.charAt(idx + cols - 1) == ' ' || st.charAt(idx + cols) == ' ') {
 				idx += cols;
 			} else {
@@ -103,14 +105,13 @@ public class DynamicProgramming {
 					idx--;
 				}
 			}
-			while (st.length()-idx <= cols - j) {
-				j += st.length()-idx;
+			while (st.length() - idx <= cols - j) {
+				j += st.length() - idx;
 				idx = 0;
 				count++;
 			}
 		}
-		
-		
+
 		return count;
 	}
 
