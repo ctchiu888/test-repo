@@ -43,7 +43,7 @@ public class StringTest {
 		String[] str = { "++++", "+-+-+", "--+-+++-", "++---+-+++-+-+++++--++" };
 		StringSolution sol = new StringSolution();
 		for (String s : str) {
-			List<String> l = sol.flipGgeneratePossibleNextMovesame(s);
+			List<String> l = sol.generatePossibleNextMovesame(s);
 			System.out.println(s + " => ");
 			for (String t : l)
 				System.out.println("\t" + t);
@@ -190,7 +190,12 @@ public class StringTest {
 		assertEquals("bacdfeg", sol.reverseStr("abcdefg", 2));
 		assertEquals("cbadeflkgpoi", sol.reverseStr("abcdefgklpoi", 3));
 		assertEquals("cb", sol.reverseStr("bc", 2));
-		
-		
+	}
+	
+	@Test
+	public void testCanWin() {
+		StringSolution sol = new StringSolution();
+		assertTrue(sol.canWin("-++++++----+--++-----+++-+--+--+++++"));
+		assertTrue(!sol.canWin("+++++++++"));
 	}
 }

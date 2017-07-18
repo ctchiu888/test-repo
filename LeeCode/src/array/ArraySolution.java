@@ -1,6 +1,7 @@
 package array;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -104,6 +105,21 @@ public class ArraySolution {
 		return max;
 	}
 
+	/**
+	 * 448. Find All Numbers Disappeared in an Array
+	 * 
+	 * Given an array of integers where 1 <= a[i] <= n (n = size of array), some
+	 * elements appear twice and others appear once.
+	 * 
+	 * Find all the elements of [1, n] inclusive that do not appear in this
+	 * array.
+	 * 
+	 * Could you do it without extra space and in O(n) runtime? You may assume
+	 * the returned list does not count as extra space.
+	 * 
+	 * @param nums
+	 * @return
+	 */
 	public List<Integer> findDisappearedNumbers(int[] nums) {
 		List<Integer> list = new ArrayList<>();
 		int p = 0;
@@ -285,27 +301,93 @@ public class ArraySolution {
 	public List<String> findMissingRanges(int[] nums, int lower, int upper) {
 		List<String> list = new ArrayList<>();
 		int start = lower;
-		int end;
+		int end = Integer.MIN_VALUE;
 
 		for (int i = 0; i < nums.length; i++) {
 			end = nums[i];
-			addMissingRange(start, end, list);
-			start = end + 1;
+			if (start < end) {
+				addMissingRange(start, end - 1, list);
+				if (end == upper)
+					break;
+
+			}
+
+			if (end < upper)
+				start = end + 1;
 		}
 
-		if (start <= upper) {
-			addMissingRange(start, upper + 1, list);
+		if (end < upper && start <= upper) {
+			addMissingRange(start, upper, list);
 		}
 
 		return list;
 	}
 
 	private void addMissingRange(int start, int end, List<String> list) {
-		if (end <= start) {
-		} else if (end - start == 1) {
+		if (end < start) {
+		} else if (end == start) {
 			list.add("" + start);
 		} else {
-			list.add(start + "->" + (end - 1));
+			list.add(start + "->" + end);
+		}
+	}
+
+	/**
+	 * 31. Next Permutation
+	 * 
+	 * Implement next permutation, which rearranges numbers into the
+	 * lexicographically next greater permutation of numbers.
+	 * 
+	 * If such arrangement is not possible, it must rearrange it as the lowest
+	 * possible order (ie, sorted in ascending order).
+	 * 
+	 * The replacement must be in-place, do not allocate extra memory.
+	 * 
+	 * Here are some examples. Inputs are in the left-hand column and its
+	 * corresponding outputs are in the right-hand column.
+	 * 
+	 * 1,2,3 -> 1,3,2
+	 * 
+	 * 3,2,1 -> 1,2,3
+	 * 
+	 * 1,1,5 -> 1,5,1
+	 * 
+	 * @param nums
+	 */
+	public void nextPermutation(int[] nums) {
+		if (nums.length <= 1)
+			return;
+
+		int i = nums.length - 2;
+		for (; i >= 0; i--) {
+			if (nums[i] < nums[i + 1]) {
+				break;
+			}
+		}
+
+		if (i == -1) {
+			Arrays.sort(nums);
+			return;
+		}
+
+		int j = nums.length - 1;
+		for (; j > i + 1; j--) {
+			if (nums[j] > nums[i]) {
+				break;
+			}
+		}
+
+		if (j == i) {
+			Arrays.sort(nums);
+			return;
+		}
+
+		int temp = nums[j];
+		nums[j] = nums[i];
+		nums[i] = temp;
+
+		if (i < nums.length - 1) {
+			Arrays.sort(nums, i + 1, nums.length);
 		}
 	}
 

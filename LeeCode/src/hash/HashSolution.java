@@ -21,9 +21,23 @@ public class HashSolution {
 		return new int[] {};
 	}
 
-	public int singleNumber(int[] nums) {
+	/**
+	 * 260. Single Number III
+	 * 
+	 * Given an array of numbers nums, in which exactly two elements appear only
+	 * once and all the other elements appear exactly twice. Find the two
+	 * elements that appear only once.
+	 * 
+	 * For example:
+	 * 
+	 * Given nums = [1, 2, 1, 3, 2, 5], return [3, 5].
+	 * 
+	 * @param nums
+	 * @return
+	 */
+	public int[] singleNumber3(int[] nums) {
 		Set<Integer> m = new HashSet<>();
-		int result = 0;
+
 		for (int i = 0; i < nums.length; i++) {
 			if (m.contains(nums[i])) {
 				m.remove(nums[i]);
@@ -31,10 +45,32 @@ public class HashSolution {
 				m.add(nums[i]);
 			}
 		}
+		Object[] res = m.toArray();
+		int[] result = new int[m.size()];
 
-		if (m.size() == 1) {
-			Iterator<Integer> iter = m.iterator();
-			result = iter.next();
+		for (int j = 0; j < res.length; j++) {
+			result[j] = ((Integer) res[j]).intValue();
+		}
+		return result;
+	}
+
+	/**
+	 * 136. Single Number
+	 * 
+	 * Given an array of integers, every element appears twice except for one.
+	 * Find that single one.
+	 * 
+	 * Note: Your algorithm should have a linear runtime complexity. Could you
+	 * implement it without using extra memory?
+	 * 
+	 * 
+	 * @param nums
+	 * @return
+	 */
+	public int singleNumber(int[] nums) {
+		int result = 0;
+		for (int n : nums) {
+			result ^= n;
 		}
 
 		return result;
@@ -132,7 +168,7 @@ public class HashSolution {
 
 		return true;
 	}
-	
+
 	public boolean containsNearbyDuplicate(int[] nums, int k) {
 		Map<Integer, Integer> map = new HashMap<>();
 		for (int i = 0; i < nums.length; i++) {
@@ -141,10 +177,10 @@ public class HashSolution {
 				if (Math.abs(i - index) <= k) {
 					return true;
 				}
-			} 
+			}
 			map.put(nums[i], i);
 		}
-		
+
 		return false;
 	}
 
@@ -157,27 +193,27 @@ public class HashSolution {
 		} else if (rank == 3) {
 			s = "Bronze Medal";
 		}
-		
+
 		return s;
 	}
-	
-    public String[] findRelativeRanks(int[] nums) {
-    	String[] rank = new String[nums.length];
-    	
-    	Map<Integer, Integer> m = new HashMap<>();
-    	for (int i = 0; i < nums.length; i++) {
-    		m.put(nums[i], i);
-    	}
-    	
-    	Arrays.sort(nums);
-    	for (int j = nums.length-1; j >=0; j--) {
-    		int idx = m.get(nums[j]);
-    		rank[idx] = getRankString(nums.length-j);
-    	}
-    	
-        return rank;
-    }
-    
+
+	public String[] findRelativeRanks(int[] nums) {
+		String[] rank = new String[nums.length];
+
+		Map<Integer, Integer> m = new HashMap<>();
+		for (int i = 0; i < nums.length; i++) {
+			m.put(nums[i], i);
+		}
+
+		Arrays.sort(nums);
+		for (int j = nums.length - 1; j >= 0; j--) {
+			int idx = m.get(nums[j]);
+			rank[idx] = getRankString(nums.length - j);
+		}
+
+		return rank;
+	}
+
 	public static void main(String[] args) {
 		String[] sList = { "aab", "bbbe", "code", "carerac", "asdfdaudfduuaesua" };
 
