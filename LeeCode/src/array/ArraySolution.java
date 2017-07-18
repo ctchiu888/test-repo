@@ -6,6 +6,19 @@ import java.util.List;
 import java.util.Map;
 
 public class ArraySolution {
+
+	/**
+	 * 169. Majority Element
+	 * 
+	 * Given an array of size n, find the majority element. The majority element
+	 * is the element that appears more than n/2 times.
+	 * 
+	 * You may assume that the array is non-empty and the majority element
+	 * always exist in the array.
+	 * 
+	 * @param nums
+	 * @return
+	 */
 	public int majorityElement(int[] nums) {
 		int maj = nums.length / 2;
 		int maxCount = -1;
@@ -281,7 +294,7 @@ public class ArraySolution {
 		}
 
 		if (start <= upper) {
-			addMissingRange(start, upper+1, list);
+			addMissingRange(start, upper + 1, list);
 		}
 
 		return list;
