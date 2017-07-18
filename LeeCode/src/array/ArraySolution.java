@@ -92,6 +92,21 @@ public class ArraySolution {
 		return max;
 	}
 
+	/**
+	 * 448. Find All Numbers Disappeared in an Array
+	 * 
+	 * Given an array of integers where 1 <= a[i] <= n (n = size of array), some
+	 * elements appear twice and others appear once.
+	 * 
+	 * Find all the elements of [1, n] inclusive that do not appear in this
+	 * array.
+	 * 
+	 * Could you do it without extra space and in O(n) runtime? You may assume
+	 * the returned list does not count as extra space.
+	 * 
+	 * @param nums
+	 * @return
+	 */
 	public List<Integer> findDisappearedNumbers(int[] nums) {
 		List<Integer> list = new ArrayList<>();
 		int p = 0;
@@ -343,7 +358,7 @@ public class ArraySolution {
 		}
 
 		int j = nums.length - 1;
-		for (; j > i+1; j--) {
+		for (; j > i + 1; j--) {
 			if (nums[j] > nums[i]) {
 				break;
 			}

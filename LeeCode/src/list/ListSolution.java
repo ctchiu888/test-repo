@@ -320,46 +320,66 @@ public class ListSolution {
 
 	/**
 	 * Delete all nodes that have duplicated in a sorted list
+	 * 
 	 * @param head
 	 * @return
 	 */
-    public ListNode deleteDuplicates2(ListNode head) {
-    	if (head == null || head.next == null) return head;
-    	
-    	boolean deleteMe = false;
-    	ListNode ptr = head;
-    	ListNode prev = null;
-    	ListNode tmp;
-    	
-    	while (ptr.next != null) {
-    		if (ptr.val == ptr.next.val) {
-    			deleteMe = true;
-    			tmp = ptr.next;
-    			ptr.next = ptr.next.next;
-    			tmp.next = null;
-    		} else if (deleteMe) {
-    			ptr.val = ptr.next.val;
-    			tmp = ptr.next;
-    			ptr.next = ptr.next.next;
-    			tmp.next = null;
-    			deleteMe = false;
-    		} else {
-    			prev = ptr;
-    			ptr = ptr.next;
-    		}
-    	}
-    	
-    	if (deleteMe) {
-    		if (prev == null) {
-    			head = null;
-    		} else {
-    			prev.next = null;
-    		}
-    	}
-    	
-        return head;
-    }
-    
+	public ListNode deleteDuplicates2(ListNode head) {
+		if (head == null || head.next == null)
+			return head;
+
+		boolean deleteMe = false;
+		ListNode ptr = head;
+		ListNode prev = null;
+		ListNode tmp;
+
+		while (ptr.next != null) {
+			if (ptr.val == ptr.next.val) {
+				deleteMe = true;
+				tmp = ptr.next;
+				ptr.next = ptr.next.next;
+				tmp.next = null;
+			} else if (deleteMe) {
+				ptr.val = ptr.next.val;
+				tmp = ptr.next;
+				ptr.next = ptr.next.next;
+				tmp.next = null;
+				deleteMe = false;
+			} else {
+				prev = ptr;
+				ptr = ptr.next;
+			}
+		}
+
+		if (deleteMe) {
+			if (prev == null) {
+				head = null;
+			} else {
+				prev.next = null;
+			}
+		}
+
+		return head;
+	}
+
+	/**
+	 * 237. Delete Node in a Linked List
+	 * 
+	 * Write a function to delete a node (except the tail) in a singly linked
+	 * list, given only access to that node.
+	 * 
+	 * Supposed the linked list is 1 -> 2 -> 3 -> 4 and you are given the third
+	 * node with value 3, the linked list should become 1 -> 2 -> 4 after
+	 * calling your function.
+	 * 
+	 * @param node
+	 */
+	public void deleteNode(ListNode node) {
+		if (node == null || node.next == null) return;
+		node.val = node.next.val;
+		node.next = node.next.next;
+	}
+
 	public static void main(String[] args) {
 
 		int[] intArray = { 1, 10, 3, 5, 67, 4, 9 };

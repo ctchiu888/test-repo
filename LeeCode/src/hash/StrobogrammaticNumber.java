@@ -1,6 +1,9 @@
 package hash;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class StrobogrammaticNumber {
@@ -60,6 +63,49 @@ public class StrobogrammaticNumber {
 
 		}
 		return true;
+	}
+
+	/**
+	 * 247. Strobogrammatic Number II
+	 * 
+	 * A strobogrammatic number is a number that looks the same when rotated 180
+	 * degrees (looked at upside down).
+	 * 
+	 * Find all strobogrammatic numbers that are of length = n.
+	 * 
+	 * For example, Given n = 2, return ["11","69","88","96"].
+	 * 
+	 * @param n
+	 * @return
+	 */
+	public List<String> findStrobogrammatic(int n) {
+		return constructString(n, n);
+	}
+
+	public List<String> constructString(int n, int m) {
+		List<String> l = new ArrayList<>();
+		if (m == 0) {
+			l.add("");
+			return l;
+		}
+		if (m == 1) {
+			l = Arrays.asList("0", "1", "8");
+			return l;
+		}
+
+		List<String> sublist = constructString(n, m - 2);
+
+		for (String s : sublist) {
+			if (m < n) {
+				l.add("0" + s + "0");
+			}
+			l.add("1" + s + "1");
+			l.add("6" + s + "9");
+			l.add("8" + s + "8");
+			l.add("9" + s + "6");
+		}
+
+		return l;
 	}
 
 }
