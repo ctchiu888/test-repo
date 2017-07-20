@@ -220,10 +220,5 @@ public class HashSolution {
 		for (String s : sList) {
 			System.out.println(s + " => " + Palindrome.isPalindromPermutation(s));
 		}
-
-		String[] numList = { "16891", "1291", "06911690" };
-		for (String s : numList) {
-			System.out.println(s + " is Strobogrammatic Number => " + StrobogrammaticNumber.isStrobogrammaticNumber(s));
-		}
 	}
 }
