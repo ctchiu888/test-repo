@@ -36,7 +36,7 @@ public class HashTest {
 		StrobogrammaticNumber sn = new StrobogrammaticNumber();
 		String[] numList = { "16891", "1291", "06911690" };
 		for (String s : numList) {
-			System.out.println(s + " is Strobogrammatic Number => " + sn.isStrobogrammaticNumber1(s));
+			System.out.println(s + " is Strobogrammatic Number => " + sn.isStrobogrammaticNumber(s));
 		}
 	}
 

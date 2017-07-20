@@ -16,7 +16,7 @@ public class StrobogrammaticNumber {
 		sn.put("9", "6");
 	}
 
-	public static boolean isStrobogrammaticNumber(String number) {
+	public static boolean isStrobogrammaticNumber2(String number) {
 		char[] num = number.toCharArray();
 		int midPos = num.length / 2;
 
@@ -63,6 +63,29 @@ public class StrobogrammaticNumber {
 
 		}
 		return true;
+	}
+
+	public boolean isStrobogrammaticNumber(String number) {
+		if (number == null || "".equals(number))
+			return true;
+		if (number.length() == 1) {
+			if (number.charAt(0) == '0' || number.charAt(0) == '1' || number.charAt(0) == '8') {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		boolean isSub = isStrobogrammaticNumber(number.substring(1, number.length() - 1));
+		if (!isSub)
+			return false;
+		char s = number.charAt(0);
+		char e = number.charAt(number.length() - 1);
+		if ((s == '1' && e == '1') || (s == '0' && e == '0') || (s == '8' && e == '8') || (s == '6' && e == '9')
+				|| (s == '9' && e == '6'))
+			return true;
+
+		return false;
 	}
 
 	/**
