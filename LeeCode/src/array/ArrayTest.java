@@ -215,4 +215,14 @@ public class ArrayTest {
 		}
 		System.out.print("]");
 	}
+	
+	@Test
+	public void testMaxProfit() {
+		ArraySolution sol = new ArraySolution();
+		int[] prices = {7, 1, 5, 3, 6, 4};
+		assertEquals(5, sol.maxProfit(prices));
+		assertEquals(0, sol.maxProfit(new int[]{7,6,4,3,1}));
+		assertEquals(8, sol.maxProfit(new int[]{2,7,6,4,10,3,1}));
+		assertEquals(7, sol.maxProfit(new int[]{1,7,2,5,3,6,4,8}));
+	}
 }

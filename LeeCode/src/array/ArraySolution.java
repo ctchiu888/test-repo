@@ -396,4 +396,22 @@ public class ArraySolution {
 		}
 	}
 
+	/**
+	 * 2,7,6,4,10,3,1
+	 * 
+	 * @param prices
+	 * @return
+	 */
+	public int maxProfit(int[] prices) {
+		int max = 0;
+		int low = prices[0];
+		for (int i = 0; i < prices.length; i++) {
+			low = Math.min(low, prices[i]);
+			if (prices[i] > low) {
+				max = Math.max(prices[i]-low, max);
+			}
+		}
+		
+		return max;
+	}
 }
