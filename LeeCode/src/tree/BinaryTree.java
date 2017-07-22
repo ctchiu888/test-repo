@@ -90,6 +90,10 @@ public class BinaryTree {
 				longCon(root.right, 1, root.val));
 	}
 
+	/**
+	 * 257. Binary Tree Paths
+	 */
+
 	private String convertListToPathString(List<String> path) {
 		if (path.isEmpty())
 			return "";
@@ -121,6 +125,14 @@ public class BinaryTree {
 		onePath.remove(onePath.size() - 1);
 	}
 
+	/**
+	 * Given a binary tree, return all root-to-leaf paths.
+	 * 
+	 * For example, given the following binary tree:
+	 * 
+	 * @param root
+	 * @return
+	 */
 	public List<String> binaryTreePaths(TreeNode root) {
 		List<String> paths = new ArrayList<>();
 		List<String> onePath = new ArrayList<>();
@@ -147,8 +159,10 @@ public class BinaryTree {
 	 */
 	public TreeNode lowestCommonAncestorBST(TreeNode root, TreeNode p,
 			TreeNode q) {
-		if (root == null) return null;
-		if (p == null || q == null) return root;
+		if (root == null)
+			return null;
+		if (p == null || q == null)
+			return root;
 
 		while ((root.val - p.val) * (root.val - q.val) > 0) {
 			if (p.val > root.val) {
