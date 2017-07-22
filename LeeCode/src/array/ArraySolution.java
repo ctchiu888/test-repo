@@ -288,6 +288,25 @@ public class ArraySolution {
 
 		return res;
 	}
+	
+	public int[] getModifiedArray1(int length, int[][] updates) {
+
+		int[] res = new int[length];
+		int startIndex = 0;
+		int endIndex = 0;
+		int inc = 0;
+		for (int i = 0; i < updates.length; i++) {
+			startIndex = updates[i][0];
+			endIndex = updates[i][1];
+			inc = updates[i][2];
+
+			for (int j = startIndex; j <= endIndex; j++) {
+				res[j] += inc;
+			}
+		}
+
+		return res;
+	}
 
 	/**
 	 * 163. Missing Ranges
