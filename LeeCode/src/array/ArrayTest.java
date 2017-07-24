@@ -1,6 +1,7 @@
 package array;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -9,6 +10,7 @@ import java.util.List;
 import org.junit.Test;
 
 import list.ListNode;
+import utils.PrintUtil;
 
 public class ArrayTest {
 
@@ -103,23 +105,16 @@ public class ArrayTest {
 
 	}
 
-	private void printArray(int[] nums) {
-		StringBuilder sb = new StringBuilder("{");
-		for (int i : nums) {
-			sb.append(i).append(",");
-		}
-		sb.append("}");
-		System.out.println(sb.toString());
-	}
+
 
 	@Test
 	public void testMoveZeroes() {
 		ArraySolution sol = new ArraySolution();
 
 		int[] nums = new int[] { 0, 0, 0, 0, 0 };
-		printArray(nums);
+		PrintUtil.printArray(nums);
 		sol.moveZeroes(nums);
-		printArray(nums);
+		PrintUtil.printArray(nums);
 
 	}
 

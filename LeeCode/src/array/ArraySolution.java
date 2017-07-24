@@ -22,9 +22,9 @@ public class ArraySolution {
 	 */
 	public int majorityElement(int[] nums) {
 		Arrays.sort(nums);
-		return nums[nums.length/2];
+		return nums[nums.length / 2];
 	}
-	
+
 	public int majorityElement1(int[] nums) {
 		int maj = nums.length / 2;
 		int maxCount = -1;
@@ -288,7 +288,7 @@ public class ArraySolution {
 
 		return res;
 	}
-	
+
 	public int[] getModifiedArray1(int length, int[][] updates) {
 
 		int[] res = new int[length];
@@ -427,10 +427,58 @@ public class ArraySolution {
 		for (int i = 0; i < prices.length; i++) {
 			low = Math.min(low, prices[i]);
 			if (prices[i] > low) {
-				max = Math.max(prices[i]-low, max);
+				max = Math.max(prices[i] - low, max);
 			}
 		}
-		
+
 		return max;
+	}
+
+	/**
+	 * 643. Maximum Average Subarray I
+	 * 
+	 * Given an array consisting of n integers, find the contiguous subarray of
+	 * given length k that has the maximum average value. And you need to output
+	 * the maximum average value.
+	 * 
+	 * @param nums
+	 * @param k
+	 * @return
+	 */
+	public double findMaxAverage(int[] nums, int k) {
+		int kSum = 0;
+		for (int i = 0; i < k; i++) {
+			kSum += nums[i];
+		}
+
+		double max = kSum / k;
+		for (int i = k; i < nums.length; i++) {
+			kSum = kSum - nums[i - k] + nums[i];
+			max = Math.max(max, kSum / k);
+		}
+		return max;
+	}
+
+	/**
+	 * 17. Letter Combinations of a Phone Number
+	 * 
+	 * Given a digit string, return all possible letter combinations that the
+	 * number could represent.
+	 * 
+	 * @param digits
+	 * @return
+	 */
+	public List<String> letterCombinations(String digits) {
+		String[] keys = {" ", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+		List<String> l = new ArrayList<>();
+		
+		int i = 0;
+		while (i < digits.length()) {
+			char c = digits.charAt(i);
+			int idx = (int) (c - '0');
+			char[] 
+		}
+		
+		return l;
 	}
 }

@@ -68,5 +68,13 @@ public class MathTest {
 		Bit bit = new Bit();
 		ListUtil.outputList(bit.readBinaryWatch(4));
 	}
+	
+	@Test
+	public void testMyPow() {
+		MathSolution m = new MathSolution();
+		System.out.println(m.myPow(8.88023, 3));
+		System.out.println(m.myPow(8.88023, -7));
+		System.out.println(m.myPow(2.00000, -2147483648));
+	}
 
 }

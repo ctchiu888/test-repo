@@ -19,4 +19,29 @@ public class MathSolution {
 		}
 		return res;
 	}
+
+	public double myPow(double x, int n) {
+		if (n == 0)
+			return 1;
+		if (n < 0) {
+			if (n == Integer.MIN_VALUE) {
+				n = -(n / 2);
+				x = 1 / (x * x);
+			} else {
+				n = -n;
+				x = 1 / x;
+			}
+		}
+		return (n % 2 == 0 ? myPow(x * x, n / 2) : x * myPow(x * x, n / 2));
+	}
+	
+    public int countNumbersWithUniqueDigits(int n) {
+    	if (n == 0) return 0;
+    	int count = 9;
+    	for (int i = 1; i < n; i++) {
+    		count *= (10-i);
+    	}
+    	return count + countNumbersWithUniqueDigits(n-1);       
+    }
+    
 }
