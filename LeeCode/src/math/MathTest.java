@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import utils.ListUtil;
+import utils.PrintUtil;
 
 public class MathTest {
 
@@ -66,7 +66,7 @@ public class MathTest {
 	@Test
 	public void testReadBinaryWatch() {
 		Bit bit = new Bit();
-		ListUtil.outputList(bit.readBinaryWatch(4));
+		PrintUtil.printList(bit.readBinaryWatch(4));
 	}
 	
 	@Test

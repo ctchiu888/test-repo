@@ -3,6 +3,7 @@ package array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -469,16 +470,24 @@ public class ArraySolution {
 	 * @return
 	 */
 	public List<String> letterCombinations(String digits) {
-		String[] keys = {" ", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-		List<String> l = new ArrayList<>();
-		
-		int i = 0;
-		while (i < digits.length()) {
-			char c = digits.charAt(i);
-			int idx = (int) (c - '0');
-			char[] 
+		LinkedList<String> l = new LinkedList<>();
+		if (digits == null || digits.isEmpty())
+			return l;
+		String[] key = { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs",
+				"tuv", "wxyz" };
+
+		l.add("");
+		for (int i = 0; i < digits.length(); i++) {
+			int idx = (int) (digits.charAt(i) - '0');
+			String post = key[idx];
+			while (l.peek().length() == i) {
+				String prefix = l.remove();
+				for (char c : post.toCharArray()) {
+					l.add(prefix + c);
+				}
+			}
 		}
-		
+
 		return l;
 	}
 }

@@ -220,4 +220,11 @@ public class ArrayTest {
 		assertEquals(8, sol.maxProfit(new int[]{2,7,6,4,10,3,1}));
 		assertEquals(7, sol.maxProfit(new int[]{1,7,2,5,3,6,4,8}));
 	}
+	
+	@Test
+	public void testLetterCombinations() {
+		ArraySolution sol = new ArraySolution();
+		PrintUtil.printList(sol.letterCombinations("23"));
+		PrintUtil.printList(sol.letterCombinations("945"));
+	}
 }

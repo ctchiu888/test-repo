@@ -1,7 +1,5 @@
 package utils;
 
-import java.util.List;
-
 import list.ListNode;
 
 public class ListUtil {
@@ -26,19 +24,6 @@ public class ListUtil {
 			l = l.next;
 		}
 
-		return sb.toString();
-	}
-
-	public static String outputList(List<String> l) {
-		StringBuilder sb = new StringBuilder("[");
-		for (int i = 0; i < l.size(); i++) {
-			sb.append(l.get(i));
-			if (i < l.size() - 1) {
-				sb.append(", ");
-			}
-		}
-		sb.append("]");
-		System.out.println(sb.toString());
 		return sb.toString();
 	}
 }
