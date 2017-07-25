@@ -224,6 +224,7 @@ public class ArrayTest {
 	@Test
 	public void testLetterCombinations() {
 		ArraySolution sol = new ArraySolution();
+		PrintUtil.printList(sol.letterCombinations("100"));
 		PrintUtil.printList(sol.letterCombinations("23"));
 		PrintUtil.printList(sol.letterCombinations("945"));
 	}

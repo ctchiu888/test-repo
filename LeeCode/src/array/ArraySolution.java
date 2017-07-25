@@ -473,8 +473,12 @@ public class ArraySolution {
 		LinkedList<String> l = new LinkedList<>();
 		if (digits == null || digits.isEmpty())
 			return l;
-		String[] key = { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs",
-				"tuv", "wxyz" };
+
+		// remove 0 and 1 from digits
+		digits = digits.replaceAll("0", "").replaceAll("1", "");
+		if (digits == null || digits.isEmpty())
+			return l;
+		String[] key = { "0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
 
 		l.add("");
 		for (int i = 0; i < digits.length(); i++) {
