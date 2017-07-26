@@ -44,4 +44,25 @@ public class MathSolution {
     	return count + countNumbersWithUniqueDigits(n-1);       
     }
     
+    /**
+     * 441. Arranging Coins
+     * 
+     * @param n
+     * @return
+     */
+    public int arrangeCoins(int n) {
+    	if (n == 0) return 0;
+        int k = 1;
+        int area = 1;
+        while (area < n) {
+        	k++;
+        	area = (k * (k + 1))/2;       	
+        }
+        if (area == n) {
+        	return k;
+        }
+        return k-1;
+    }
+    
+    
 }

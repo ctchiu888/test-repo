@@ -494,4 +494,30 @@ public class ArraySolution {
 
 		return l;
 	}
+
+	public String[] findRestaurant(String[] list1, String[] list2) {
+		List<String> l = new ArrayList<>();
+		int indexSum = Integer.MAX_VALUE;
+		Map<String, Integer> m = new HashMap<>();
+		for (int i = 0; i < list1.length; i++) {
+			m.put(list1[i], i);
+		}
+		
+		for (int i = 0; i < list2.length; i++) {
+			Integer idx = m.get(list2[i]);
+			if (idx != null) {
+				if (idx + i == indexSum) {
+					l.add(list2[i]);
+				} else if (idx + i < indexSum) {
+					l.clear();
+					l.add(list2[i]);
+					indexSum = idx + i;
+				}
+			}
+		}
+		
+		String[] res = new String[l.size()];
+		res = l.toArray(res);
+		return res;
+	}
 }

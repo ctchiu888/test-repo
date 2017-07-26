@@ -76,5 +76,15 @@ public class MathTest {
 		System.out.println(m.myPow(8.88023, -7));
 		System.out.println(m.myPow(2.00000, -2147483648));
 	}
+	
+	@Test
+	public void testArrangeCoins() {
+		MathSolution m = new MathSolution();
+		assertEquals(1, m.arrangeCoins(1));
+		assertEquals(1, m.arrangeCoins(2));
+		assertEquals(2, m.arrangeCoins(3));
+		assertEquals(2, m.arrangeCoins(4));
+		assertEquals(3, m.arrangeCoins(8));
+	}
 
 }

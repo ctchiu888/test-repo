@@ -65,6 +65,13 @@ public class DynamicProgramming {
 		return same + diff;
 	}
 
+	
+	public int wordsTyping(String[] sentence, int rows, int cols) {
+		int count = 0;
+		
+		return count;
+	}
+	
 	public int wordsTyping1(String[] sentence, int rows, int cols) {
 		int count = 0;
 		int j = 0;
@@ -85,7 +92,15 @@ public class DynamicProgramming {
 		return count;
 	}
 
-	public int wordsTyping(String[] sentence, int rows, int cols) {
+	/**
+	 * This one is wrong!!
+	 * 
+	 * @param sentence
+	 * @param rows
+	 * @param cols
+	 * @return
+	 */
+	public int wordsTyping2(String[] sentence, int rows, int cols) {
 		int count = 0;
 
 		StringBuilder sb = new StringBuilder();
