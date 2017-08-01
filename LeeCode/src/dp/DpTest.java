@@ -29,7 +29,7 @@ public class DpTest {
 		assertEquals(1, dp.wordsTyping(new String[] { "hello", "world" }, 2, 8));
 		assertEquals(2, dp.wordsTyping(new String[] { "a", "bcd", "e" }, 3, 6));
 		assertEquals(2, dp.wordsTyping(new String[] { "I", "had", "apple", "pie"}, 4,11));
-		assertEquals(2, dp.wordsTyping(new String[] { "a", "b"}, 20000, 20000));
+		assertEquals(100000000, dp.wordsTyping(new String[] { "a", "b"}, 20000, 20000));
 
 	}
 

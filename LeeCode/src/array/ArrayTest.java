@@ -228,4 +228,18 @@ public class ArrayTest {
 		PrintUtil.printList(sol.letterCombinations("23"));
 		PrintUtil.printList(sol.letterCombinations("945"));
 	}
+	
+	@Test
+	public void testFindRestaurant() {
+		ArraySolution sol = new ArraySolution();
+		String[] list1 = {"Shogun", "Tapioca Express", "Burger King", "KFC"};
+		String[] list2 = {"Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"};
+		
+		PrintUtil.printArray(sol.findRestaurant(list1, list2));
+		String[] list3 = {"Shogun", "Tapioca Express", "Burger King", "KFC"};
+		String[] list4 = {"KFC", "Shogun", "Burger King"};
+		
+		PrintUtil.printArray(sol.findRestaurant(list3, list4));
+		
+	}
 }
