@@ -411,4 +411,27 @@ public class BinaryTree {
 		prevVal = root.val;
 		traverse(root.right, list);
 	}
+
+	/**
+	 * 101. Symmetric Tree
+	 * 
+	 * @param root
+	 * @return
+	 */
+	public boolean isSymmetric(TreeNode root) {
+		if (root == null || (root.left == null && root.right == null))
+			return true;
+		return isMirror(root.left, root.right);
+	}
+
+	private boolean isMirror(TreeNode t1, TreeNode t2) {
+		if (t1 == null && t2 == null)
+			return true;
+
+		if (t1 != null && t2 != null && t1.val == t2.val) {
+			return isMirror(t1.left, t2.right) && isMirror(t1.right, t2.left);
+		}
+
+		return false;
+	}
 }

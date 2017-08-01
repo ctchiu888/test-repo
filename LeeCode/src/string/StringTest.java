@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import utils.PrintUtil;
+
 public class StringTest {
 
 	@Test
@@ -197,5 +199,21 @@ public class StringTest {
 		StringSolution sol = new StringSolution();
 		assertTrue(sol.canWin("-++++++----+--++-----+++-+--+--+++++"));
 		assertTrue(!sol.canWin("+++++++++"));
+	}
+	
+	@Test
+	public void testSingleTypo() {
+		StringSolution sol = new StringSolution();
+		String[] vocabs = new String[] {"apple", "pineapple", "banana", "cucumber"};
+		assertTrue(sol.singleTypo(vocabs, "adple"));
+		assertTrue(!sol.singleTypo(vocabs, "addie"));
+	}
+	
+	@Test
+	public void testGeneratePattern() {
+		StringSolution sol = new StringSolution();
+		PrintUtil.printList(sol.generatePattern("1?00?101"));
+		PrintUtil.printList(sol.generatePattern("??00?101"));
+		PrintUtil.printList(sol.generatePattern("1?00?10?"));
 	}
 }

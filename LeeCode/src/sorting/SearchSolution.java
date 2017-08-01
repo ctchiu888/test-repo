@@ -31,6 +31,16 @@ public class SearchSolution {
 		}
 		return lo;
 	}
+	
+	/**
+	 * 375. Guess Number Higher or Lower II
+	 * 
+	 * @param n
+	 * @return
+	 */
+    public int getMoneyAmount(int n) {
+        return 0;
+    }
 
 	/**
 	 * 

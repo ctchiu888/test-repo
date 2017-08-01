@@ -193,7 +193,7 @@ public class StringSolution {
 		Deque<FlipString> queue = new ArrayDeque<>();
 		queue.add(new FlipString(s, 0));
 		boolean canWin = true;
-		
+
 		while (!queue.isEmpty()) {
 			FlipString fs = queue.remove();
 			List<String> list = generatePossibleNextMovesame(fs.str);
@@ -201,26 +201,26 @@ public class StringSolution {
 				canWin = canWin && true;
 			}
 			for (String str : list) {
-				queue.add(new FlipString(str, fs.count+1));
-			}				
+				queue.add(new FlipString(str, fs.count + 1));
+			}
 		}
-		
+
 		return canWin;
 	}
-	
+
 	private class FlipString {
 		String str;
 		int count;
-		
+
 		FlipString(String s, int count) {
 			str = s;
 			this.count = count;
 		}
 	}
-	
-//	private boolean hasNextMove(String s) {
-//		return s.indexOf("++") > -1;
-//	}
+
+	// private boolean hasNextMove(String s) {
+	// return s.indexOf("++") > -1;
+	// }
 
 	public String licenseKeyFormatting(String s, int k) {
 		StringBuilder sb = new StringBuilder();
@@ -348,7 +348,8 @@ public class StringSolution {
 			}
 
 			String num = "";
-			while (j < abbr.length() && abbr.charAt(j) >= '0' && abbr.charAt(j) <= '9') {
+			while (j < abbr.length() && abbr.charAt(j) >= '0'
+					&& abbr.charAt(j) <= '9') {
 				num += abbr.charAt(j);
 				j++;
 			}
@@ -457,7 +458,9 @@ public class StringSolution {
 	public boolean detectCapitalUse(String word) {
 		String firstCh = word.substring(0, 1);
 		if (firstCh.equals(firstCh.toUpperCase())) {
-			if (word.equals(word.toUpperCase()) || word.substring(1).equals(word.substring(1).toLowerCase())) {
+			if (word.equals(word.toUpperCase())
+					|| word.substring(1)
+							.equals(word.substring(1).toLowerCase())) {
 				return true;
 			}
 		} else {
@@ -495,4 +498,52 @@ public class StringSolution {
 		return a.equals(b) ? -1 : Math.max(a.length(), b.length());
 	}
 
+	private boolean hasOneCharDiff(String word, String vocab) {
+		char[] w = word.toCharArray();
+		char[] v = vocab.toCharArray();
+
+		if (w.length != v.length)
+			return false;
+		int count = 0;
+		for (int i = 0; i < w.length; i++) {
+			if (w[i] != v[i]) {
+				count++;
+				if (count > 1)
+					return false;
+			}
+		}
+
+		return true;
+	}
+
+	public boolean singleTypo(String[] vocabs, String word) {
+		if (vocabs == null || vocabs.length == 0 || word == null)
+			return false;
+		boolean res = false;
+		for (String s : vocabs) {
+			if (hasOneCharDiff(word, s)) {
+				res = true;
+				break;
+			}
+		}
+		return res;
+	}
+	
+	public List<String> generatePattern(String pattern) {
+		List<String> l = new ArrayList<>();
+		Deque<String> q = new ArrayDeque<>();
+		q.add(pattern);
+		while (!q.isEmpty()) {
+			String s = q.remove();
+			int idx = s.indexOf('?');
+			if (idx == -1) {
+				l.add(s);
+			} else {
+				q.addLast(s.substring(0, idx) + "0" + s.substring(idx+1));
+				q.addLast(s.substring(0, idx) + "1" + s.substring(idx+1));
+			}
+		}
+		
+		return l;
+	}
 }
