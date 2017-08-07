@@ -52,4 +52,40 @@ public class Bit {
 		}
 		return output;
 	}
+
+	/**
+	 * 461. Hamming Distance 
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public int hammingDistance(int x, int y) {
+		int z = x ^ y;
+		int weight = 0;
+		while (z != 0) {
+			if ((z & 1) == 1) {
+				weight++;
+			}
+			z = z >> 1;
+		}
+		return weight;
+	}
+	
+	/**
+	 * 477. Total Hamming Distance 
+	 * 
+	 * @param nums
+	 * @return
+	 */
+    public int totalHammingDistance(int[] nums) {
+    	int total = 0;
+        for (int i = 0; i < nums.length; i++) {
+        	for (int j = i+1; j < nums.length; j++) {
+        		total += hammingDistance(nums[i], nums[j]);
+        	}
+        }
+        
+        return total;
+    }
 }

@@ -87,4 +87,9 @@ public class MathTest {
 		assertEquals(3, m.arrangeCoins(8));
 	}
 
+	@Test
+	public void testHammingDistance() {
+		Bit b = new Bit();
+		assertEquals(2, b.hammingDistance(1, 4));
+	}
 }

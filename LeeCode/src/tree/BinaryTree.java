@@ -1,7 +1,9 @@
 package tree;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.List;
 
 public class BinaryTree {
@@ -433,5 +435,51 @@ public class BinaryTree {
 		}
 
 		return false;
+	}
+
+	/**
+	 * 617. Merge Two Binary Trees
+	 * 
+	 * @param t1
+	 * @param t2
+	 * @return
+	 */
+	public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
+		if (t1 == null)
+			return t2;
+		if (t2 == null)
+			return t1;
+
+		t1.val += t2.val;
+		t1.left = mergeTrees(t1.left, t2.left);
+		t1.right = mergeTrees(t1.right, t2.right);
+		return t1;
+	}
+
+	/**
+	 * 112. Path Sum
+	 * 
+	 * @param root
+	 * @param sum
+	 * @return
+	 */
+
+	public boolean hasPathSum(TreeNode root, int sum) {
+		if (root == null)
+			return false;
+
+		if (root.left == null && root.right == null)
+			return root.val == sum;
+
+		boolean res = false;
+		if (root.left != null) {
+			res = res || hasPathSum(root.left, sum - root.val);
+		}
+		
+		if (root.right != null) {
+			res = res || hasPathSum(root.right, sum - root.val);
+		}
+
+		return res;
 	}
 }
