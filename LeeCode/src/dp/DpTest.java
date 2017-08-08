@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import utils.PrintUtil;
+
 public class DpTest {
 
 	@Test
@@ -31,6 +33,12 @@ public class DpTest {
 		assertEquals(2, dp.wordsTyping(new String[] { "I", "had", "apple", "pie"}, 4,11));
 		assertEquals(100000000, dp.wordsTyping(new String[] { "a", "b"}, 20000, 20000));
 
+	}
+	
+	@Test
+	public void testGenerateParenthesis() {
+		DynamicProgramming dp = new DynamicProgramming();
+		PrintUtil.printList(dp.generateParenthesis(4));
 	}
 
 }

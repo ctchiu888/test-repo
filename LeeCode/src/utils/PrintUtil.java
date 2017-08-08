@@ -21,6 +21,15 @@ public class PrintUtil {
 		System.out.println(sb.toString());
 	}
 
+	public static void printArray(double[] nums) {
+		StringBuilder sb = new StringBuilder("{");
+		for (double d : nums) {
+			sb.append(d).append(",");
+		}
+		sb.append("}");
+		System.out.println(sb.toString());
+	}
+	
 	public static String printList(List<String> l) {
 		StringBuilder sb = new StringBuilder("[");
 		for (int i = 0; i < l.size(); i++) {

@@ -1,6 +1,9 @@
 package dp;
 
-import java.util.Arrays;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
 
 public class DynamicProgramming {
 
@@ -65,13 +68,12 @@ public class DynamicProgramming {
 		return same + diff;
 	}
 
-	
 	public int wordsTyping(String[] sentence, int rows, int cols) {
 		int count = 0;
-		
+
 		return count;
 	}
-	
+
 	public int wordsTyping1(String[] sentence, int rows, int cols) {
 		int count = 0;
 		int j = 0;
@@ -112,7 +114,8 @@ public class DynamicProgramming {
 		int idx = 0;
 
 		for (int i = 0; i < rows; i++) {
-			if (st.charAt(idx + cols - 1) == ' ' || st.charAt(idx + cols) == ' ') {
+			if (st.charAt(idx + cols - 1) == ' '
+					|| st.charAt(idx + cols) == ' ') {
 				idx += cols;
 			} else {
 				idx += cols;
@@ -128,6 +131,59 @@ public class DynamicProgramming {
 		}
 
 		return count;
+	}
+
+	/**
+	 * 22. Generate Parentheses
+	 * 
+	 * @param n
+	 * @return
+	 */
+	public List<String> generateParenthesis(int n) {
+		Deque<String> l = new ArrayDeque<>();
+
+		l.add("");
+		while (l.peek().length() < n * 2) {
+			String str = l.remove();
+			addOneParenthesis(str, l);
+		}
+
+		return new ArrayList<String>(l);
+	}
+
+	private void addOneParenthesis(String str, Deque<String> q) {
+		if ("".equals(str)) {
+			q.addLast("()");
+			return;
+		}
+		for (int i = 0; i <= str.length() / 2; i++) {
+			addAcross(str, i, q);
+		}
+	}
+
+	private void addAcross(String str, int step, Deque<String> q) {
+		if (step == 0) {
+			q.addLast("()" + str);
+			return;
+		}
+
+		int closeIdx = 0;
+		int matchCount = 0;
+		while (closeIdx < str.length() && step > 0) {
+			if (str.charAt(closeIdx) == '(') {
+				matchCount++;
+				closeIdx++;
+			} else if (str.charAt(closeIdx) == ')') {
+				matchCount--;
+				closeIdx++;
+				if (matchCount == 0)
+					step--;
+			}
+		}
+
+		if (step == 0)
+			q.addLast("(" + str.substring(0, closeIdx) + ")"
+					+ str.substring(closeIdx));
 	}
 
 }

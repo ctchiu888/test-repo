@@ -65,4 +65,9 @@ public class TreeTest {
 		bt.sortedArrayToBST(new int[] { 1, 2, 3, 4, 5, 6 });
 	}
 
+	
+	@Test
+	public void testIsSymmetric() {
+		BinaryTree bt = new BinaryTree();	
+	}
 }

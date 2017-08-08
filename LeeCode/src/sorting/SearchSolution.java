@@ -1,6 +1,8 @@
 package sorting;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class SearchSolution {
 
@@ -31,6 +33,16 @@ public class SearchSolution {
 		}
 		return lo;
 	}
+	
+	/**
+	 * 375. Guess Number Higher or Lower II
+	 * 
+	 * @param n
+	 * @return
+	 */
+    public int getMoneyAmount(int n) {
+        return 0;
+    }
 
 	/**
 	 * 
@@ -51,4 +63,38 @@ public class SearchSolution {
 			nums[nums.length-1] = work[l];
 		}
 	}
+	
+	/**
+	 * 480. Sliding Window Median
+	 * 
+	 * @param nums
+	 * @param k
+	 * @return
+	 */
+    public double[] medianSlidingWindow(int[] nums, int k) {
+        List<Double> l = new ArrayList<>();
+        int[] window = new int[k];
+        
+        for (int i = 0; i < nums.length - k + 1; i++) {
+        	window = Arrays.copyOfRange(nums, i, i + k);
+        	Arrays.sort(window);
+        	l.add(getMedian(window));       	
+        }
+        
+        double[] res = new double[l.size()];
+        for (int i = 0; i < res.length; i++) {
+        	res[i] = l.get(i);
+        }
+        
+        return res;
+    }
+    
+    private double getMedian(int[] window) {
+    	int m = window.length/2;
+    	if (window.length % 2 == 0) {
+    		return ((double) window[m-1]+ (double) window[m])/2;
+    	} else {
+    		return (double) window[m];
+    	}
+    }
 }
