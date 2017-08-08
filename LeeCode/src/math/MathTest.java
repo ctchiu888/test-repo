@@ -85,6 +85,7 @@ public class MathTest {
 		assertEquals(2, m.arrangeCoins(3));
 		assertEquals(2, m.arrangeCoins(4));
 		assertEquals(3, m.arrangeCoins(8));
+		assertEquals(65535, m.arrangeCoins(2147483647));
 	}
 
 }

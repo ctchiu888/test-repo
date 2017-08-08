@@ -34,35 +34,60 @@ public class MathSolution {
 		}
 		return (n % 2 == 0 ? myPow(x * x, n / 2) : x * myPow(x * x, n / 2));
 	}
+
+	public int countNumbersWithUniqueDigits(int n) {
+		if (n == 0)
+			return 0;
+		int count = 9;
+		for (int i = 1; i < n; i++) {
+			count *= (10 - i);
+		}
+		return count + countNumbersWithUniqueDigits(n - 1);
+	}
+
+	/**
+	 * 441. Arranging Coins
+	 * 
+	 * @param n
+	 * @return
+	 */
+	public int arrangeCoins1(int n) {
+		if (n == 0)
+			return 0;
+		int k = 1;
+		int area = 1;
+		while (area < n) {
+			k++;
+			area = (k * (k + 1)) / 2;
+		}
+		if (area == n) {
+			return k;
+		}
+		return k - 1;
+	}
+
+	public int arrangeCoins(int n) {
+		return (int) (-1 + Math.sqrt(8 * (long) n + 1)) / 2;
+	}
 	
-    public int countNumbersWithUniqueDigits(int n) {
-    	if (n == 0) return 0;
-    	int count = 9;
-    	for (int i = 1; i < n; i++) {
-    		count *= (10-i);
-    	}
-    	return count + countNumbersWithUniqueDigits(n-1);       
-    }
-    
-    /**
-     * 441. Arranging Coins
-     * 
-     * @param n
-     * @return
-     */
-    public int arrangeCoins(int n) {
-    	if (n == 0) return 0;
-        int k = 1;
-        int area = 1;
-        while (area < n) {
-        	k++;
-        	area = (k * (k + 1))/2;       	
+	/**
+	 * 399. Evaluate Division
+	 * 
+	 * @param equations
+	 * @param values
+	 * @param queries
+	 * @return
+	 */
+    public double[] calcEquation(String[][] equations, double[] values, String[][] queries) {
+        double [] res = new double[queries.length];
+        
+        for (int i = 0; i < equations.length; i++) {
+        	
         }
-        if (area == n) {
-        	return k;
-        }
-        return k-1;
+        
+        return res;
     }
     
     
+
 }
