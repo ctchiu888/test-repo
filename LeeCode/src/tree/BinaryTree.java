@@ -1,9 +1,9 @@
 package tree;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 public class BinaryTree {
@@ -30,8 +30,7 @@ public class BinaryTree {
 			}
 		}
 
-		if (Math.abs(target - (double) root.val) > Math.abs((double) closest
-				- target)) {
+		if (Math.abs(target - (double) root.val) > Math.abs((double) closest - target)) {
 			return closest;
 		}
 
@@ -69,8 +68,7 @@ public class BinaryTree {
 		if (leftDepth == rightDepth) {
 			count = (1 << leftDepth) - 1;
 		} else {
-			count = 1 + countCompleteTreeNodes(root.left)
-					+ countCompleteTreeNodes(root.right);
+			count = 1 + countCompleteTreeNodes(root.left) + countCompleteTreeNodes(root.right);
 		}
 
 		return count;
@@ -88,8 +86,7 @@ public class BinaryTree {
 	public int longestConsecutive(TreeNode root) {
 		if (root == null)
 			return 0;
-		return Math.max(longCon(root.left, 1, root.val),
-				longCon(root.right, 1, root.val));
+		return Math.max(longCon(root.left, 1, root.val), longCon(root.right, 1, root.val));
 	}
 
 	/**
@@ -110,8 +107,7 @@ public class BinaryTree {
 		return sb.toString();
 	}
 
-	private void listBinaryTreePaths(TreeNode root, List<String> onePath,
-			List<String> paths) {
+	private void listBinaryTreePaths(TreeNode root, List<String> onePath, List<String> paths) {
 		if (root == null)
 			return;
 
@@ -159,8 +155,7 @@ public class BinaryTree {
 	 * @param q
 	 * @return
 	 */
-	public TreeNode lowestCommonAncestorBST(TreeNode root, TreeNode p,
-			TreeNode q) {
+	public TreeNode lowestCommonAncestorBST(TreeNode root, TreeNode p, TreeNode q) {
 		if (root == null)
 			return null;
 		if (p == null || q == null)
@@ -277,8 +272,7 @@ public class BinaryTree {
 			return true;
 		if (p == null || q == null)
 			return false;
-		return (p.val == q.val && isSameTree(p.left, q.left) && isSameTree(
-				p.right, q.right));
+		return (p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right));
 	}
 
 	public TreeNode sortedArrayToBST(int[] nums) {
@@ -289,8 +283,7 @@ public class BinaryTree {
 			return new TreeNode(nums[0]);
 		}
 
-		int midIndex = (nums.length % 2 == 0) ? nums.length / 2 - 1
-				: nums.length / 2;
+		int midIndex = (nums.length % 2 == 0) ? nums.length / 2 - 1 : nums.length / 2;
 		TreeNode root = new TreeNode(nums[midIndex]);
 
 		if (midIndex - 1 >= 0) {
@@ -300,8 +293,7 @@ public class BinaryTree {
 		}
 
 		if (midIndex + 1 < nums.length) {
-			root.right = sortedArrayToBST(Arrays.copyOfRange(nums,
-					midIndex + 1, nums.length));
+			root.right = sortedArrayToBST(Arrays.copyOfRange(nums, midIndex + 1, nums.length));
 		} else {
 			root.right = null;
 		}
@@ -321,8 +313,7 @@ public class BinaryTree {
 		int l = treeDepth(root.left);
 		int r = treeDepth(root.right);
 
-		return Math.abs(l - r) <= 1 && isBalanced(root.left)
-				&& isBalanced(root.right);
+		return Math.abs(l - r) <= 1 && isBalanced(root.left) && isBalanced(root.right);
 	}
 
 	/**
@@ -475,11 +466,65 @@ public class BinaryTree {
 		if (root.left != null) {
 			res = res || hasPathSum(root.left, sum - root.val);
 		}
-		
+
 		if (root.right != null) {
 			res = res || hasPathSum(root.right, sum - root.val);
 		}
 
 		return res;
+	}
+
+	private int colMin = 0;
+	private int colMax = 0;
+
+	/**
+	 * 314. Binary Tree Vertical Order Traversal
+	 * 
+	 * @param root
+	 * @return
+	 */
+	public List<List<Integer>> verticalOrder(TreeNode root) {
+		List<List<Integer>> list = new ArrayList<>();
+		// figure out the range of the columns
+		if (root == null)
+			return list;
+		computeRange(root, 0);
+
+		for (int i = colMin; i <= colMax; i++)
+			list.add(new ArrayList<Integer>());
+		
+		Deque<TreeNode> q = new LinkedList<>();
+		Deque<Integer> idx = new LinkedList<>();
+		
+		q.offer(root);
+		idx.offer(-colMin);
+		
+		while (!q.isEmpty()) {
+			TreeNode node = q.poll();
+			int i = idx.poll();
+			list.get(i).add(node.val);
+			if (node.left != null) {
+				q.offer(node.left);
+				idx.offer(i-1);
+			}
+			if (node.right != null) {
+				q.offer(node.right);
+				idx.offer(i+1);
+			}			
+		}
+
+		return list;
+	}
+
+	private void computeRange(TreeNode node, int column) {
+		colMin = Math.min(colMin, column);
+		colMax = Math.max(colMax, column);
+		if (node.left != null) {
+			computeRange(node.left, column - 1);
+		}
+
+		if (node.right != null) {
+			computeRange(node.right, column + 1);
+		}
 	}
 }
