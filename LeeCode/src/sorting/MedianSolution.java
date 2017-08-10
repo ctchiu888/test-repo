@@ -52,12 +52,10 @@ public class MedianSolution {
 		int n = nums2.length;
 		int i = m / 2;
 		int j = n / 2;
-		while ((i + j) == (m + n) / 2) {
-			if (nums1[i] <= nums2[j + 1] && nums2[j] <= nums2[i + 1]
-					&& (i + j) == (m + n) / 2) {
-				return Math.max(nums1[i], nums2[j]);
+		while (true) {
+			if (nums1[i] <= nums2[j + 1] && nums2[j] <= nums1[i + 1] && (i+j == (m+n)/2)) {
+				break;
 			}
-
 			if (nums1[i] > nums2[j + 1]) {
 				i = i / 2;
 				j = j + (n - j) / 2;
@@ -67,6 +65,14 @@ public class MedianSolution {
 			}
 		}
 
-		return Math.max(nums1[i], nums2[j]);
+		if ((m + n) % 2 == 0) {
+			return (double) (nums1[i] + nums2[j]) / 2;
+		} else {
+			if ((m + n - 1) / 2 == (i + j - 2)) {
+				return (double) Math.min(nums1[i], nums2[j]);
+			} else {
+				return (double) Math.max(nums1[i], nums2[j]);
+			}
+		}
 	}
 }
