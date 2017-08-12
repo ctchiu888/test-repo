@@ -3,9 +3,11 @@ package array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class ArraySolution {
 
@@ -539,5 +541,27 @@ public class ArraySolution {
         }
         
         return max[nums.length-1];
+    }
+    
+    /**
+     * 560. Subarray Sum Equals K
+     * 
+     * @param nums
+     * @param k
+     * @return
+     */
+    public int subarraySum(int[] nums, int k) {
+        int count = 0;
+        int sum = 0;
+        Set<Integer> m = new HashSet<>();
+        m.add(0);
+        for (int n : nums) {
+        	sum += n;
+        	m.add(sum);
+        	if (m.contains(sum-k)) {
+        		count++;
+        	}
+        }
+        return count;
     }
 }
