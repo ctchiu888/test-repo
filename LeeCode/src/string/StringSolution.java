@@ -348,8 +348,7 @@ public class StringSolution {
 			}
 
 			String num = "";
-			while (j < abbr.length() && abbr.charAt(j) >= '0'
-					&& abbr.charAt(j) <= '9') {
+			while (j < abbr.length() && abbr.charAt(j) >= '0' && abbr.charAt(j) <= '9') {
 				num += abbr.charAt(j);
 				j++;
 			}
@@ -458,9 +457,7 @@ public class StringSolution {
 	public boolean detectCapitalUse(String word) {
 		String firstCh = word.substring(0, 1);
 		if (firstCh.equals(firstCh.toUpperCase())) {
-			if (word.equals(word.toUpperCase())
-					|| word.substring(1)
-							.equals(word.substring(1).toLowerCase())) {
+			if (word.equals(word.toUpperCase()) || word.substring(1).equals(word.substring(1).toLowerCase())) {
 				return true;
 			}
 		} else {
@@ -516,6 +513,26 @@ public class StringSolution {
 		return true;
 	}
 
+	/**
+	 * Question 1:
+	 * 
+	 * You have a list of words in English (your vocabulary). Code a method for
+	 * determining if an arbitrary string can be changed to a word in your
+	 * vocabulary with a single character substitution. What is the big O for
+	 * your algorithm?
+	 * 
+	 * Example: vocab = ['apple', 'pineapple', 'banana', 'cucumber']
+	 * 
+	 * singleTypo('adple') # True
+	 * 
+	 * singleTypo('addle') # False
+	 * 
+	 * singleTypo('aple') # False
+	 * 
+	 * @param vocabs
+	 * @param word
+	 * @return
+	 */
 	public boolean singleTypo(String[] vocabs, String word) {
 		if (vocabs == null || vocabs.length == 0 || word == null)
 			return false;
@@ -528,22 +545,34 @@ public class StringSolution {
 		}
 		return res;
 	}
-	
+
+	/**
+	 * Question 2:
+	 * 
+	 * Given a string of 0s, 1s, and ?s (wildcards), generate all 0-1 strings
+	 * that match this pattern, e.g.
+	 * 
+	 * 1?00?101 -> [10000101, 10001101, 11000101, 11001101].
+	 * 
+	 * 
+	 * @param pattern
+	 * @return
+	 */
 	public List<String> generatePattern(String pattern) {
 		List<String> l = new ArrayList<>();
 		Deque<String> q = new ArrayDeque<>();
-		q.add(pattern);
+		q.addLast(pattern);
 		while (!q.isEmpty()) {
 			String s = q.remove();
 			int idx = s.indexOf('?');
 			if (idx == -1) {
 				l.add(s);
 			} else {
-				q.addLast(s.substring(0, idx) + "0" + s.substring(idx+1));
-				q.addLast(s.substring(0, idx) + "1" + s.substring(idx+1));
+				q.addLast(s.substring(0, idx) + "0" + s.substring(idx + 1));
+				q.addLast(s.substring(0, idx) + "1" + s.substring(idx + 1));
 			}
 		}
-		
+
 		return l;
 	}
 }

@@ -207,6 +207,10 @@ public class StringTest {
 		String[] vocabs = new String[] {"apple", "pineapple", "banana", "cucumber"};
 		assertTrue(sol.singleTypo(vocabs, "adple"));
 		assertTrue(!sol.singleTypo(vocabs, "addie"));
+		assertTrue(!sol.singleTypo(vocabs, "appl"));
+		assertTrue(sol.singleTypo(vocabs, "pineaaple"));
+		assertTrue(!sol.singleTypo(vocabs, "pimeadple"));
+		
 	}
 	
 	@Test

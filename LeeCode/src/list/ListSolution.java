@@ -124,45 +124,6 @@ public class ListSolution {
 		return head;
 	}
 
-	public ListNode mergeList(ListNode pivot, ListNode lower, ListNode higher) {
-		if (pivot == null)
-			return null;
-		pivot.next = higher;
-
-		ListNode head = pivot;
-		if (lower != null) {
-			head = lower;
-			while (lower.next != null) {
-				lower = lower.next;
-			}
-			lower.next = pivot;
-		}
-		return head;
-	}
-
-	public ListNode sortList(ListNode head) {
-		if (head == null || head.next == null) {
-			return head;
-		}
-		ListNode pivot = head;
-		ListNode lower = null;
-		ListNode higher = null;
-
-		ListNode node = head.next;
-		while (node != null) {
-			ListNode tmp = node.next;
-			if (pivot.val < node.val) {
-				node.next = higher;
-				higher = node;
-			} else {
-				node.next = lower;
-				lower = node;
-			}
-			node = tmp;
-		}
-
-		return mergeList(pivot, sortList(lower), sortList(higher));
-	}
 
 	public ListNode oddEvenList(ListNode head) {
 		if (head == null || head.next == null || head.next.next == null) {

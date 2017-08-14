@@ -504,7 +504,7 @@ public class ArraySolution {
 		for (int i = 0; i < list1.length; i++) {
 			m.put(list1[i], i);
 		}
-		
+
 		for (int i = 0; i < list2.length; i++) {
 			Integer idx = m.get(list2[i]);
 			if (idx != null) {
@@ -517,51 +517,82 @@ public class ArraySolution {
 				}
 			}
 		}
-		
+
 		String[] res = new String[l.size()];
 		res = l.toArray(res);
 		return res;
 	}
-	
+
 	/**
 	 * 198. House Robber
 	 * 
 	 * @param nums
 	 * @return
 	 */
-    public int rob(int[] nums) {
-    	if (nums.length == 1) return nums[0];
-    	if (nums.length == 2) return Math.max(nums[0], nums[1]);
-    	
-    	int[] max = new int[nums.length];
-    	max[0] = nums[0];
-    	max[1] = Math.max(nums[0], nums[1]);
-        for (int i = 2; i < nums.length; i++) {
-        	max[i] = Math.max(max[i-1], max[i-2]+nums[i]);
-        }
-        
-        return max[nums.length-1];
-    }
-    
-    /**
-     * 560. Subarray Sum Equals K
-     * 
-     * @param nums
-     * @param k
-     * @return
-     */
-    public int subarraySum(int[] nums, int k) {
-        int count = 0;
-        int sum = 0;
-        Map<Integer, Integer> m = new HashMap<>();
-        m.put(0, 1);
-        for (int n : nums) {
-        	sum += n;
-        	if (m.containsKey(sum-k)) {
-        		count += m.get(sum-k);
-        	}
-        	m.put(sum, m.getOrDefault(sum, 0) + 1);
-        }
-        return count;
-    }
+	public int rob(int[] nums) {
+		if (nums.length == 1)
+			return nums[0];
+		if (nums.length == 2)
+			return Math.max(nums[0], nums[1]);
+
+		int[] max = new int[nums.length];
+		max[0] = nums[0];
+		max[1] = Math.max(nums[0], nums[1]);
+		for (int i = 2; i < nums.length; i++) {
+			max[i] = Math.max(max[i - 1], max[i - 2] + nums[i]);
+		}
+
+		return max[nums.length - 1];
+	}
+
+	/**
+	 * 560. Subarray Sum Equals K
+	 * 
+	 * @param nums
+	 * @param k
+	 * @return
+	 */
+	public int subarraySum(int[] nums, int k) {
+		int count = 0;
+		int sum = 0;
+		Map<Integer, Integer> m = new HashMap<>();
+		m.put(0, 1);
+		for (int n : nums) {
+			sum += n;
+			if (m.containsKey(sum - k)) {
+				count += m.get(sum - k);
+			}
+			m.put(sum, m.getOrDefault(sum, 0) + 1);
+		}
+		return count;
+	}
+
+	/**
+	 * 523. Continuous Subarray Sum
+	 * 
+	 * @param nums
+	 * @param k
+	 * @return
+	 */
+	public boolean checkSubarraySum(int[] nums, int k) {
+		int[] sum = new int[nums.length+1];
+		sum[0] = 0;
+		sum[1] = nums[0];	
+		for (int i = 1; i < nums.length; i++) {
+			sum[i+1] = sum[i] + nums[i];
+
+			for (int j = 0; j < i; j++) {
+				if (k == 0) {
+					if (sum[i+1] - sum[j] == 0) {
+						return true;
+					}
+				} else if ((sum[i+1] - sum[j]) % k == 0) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
 }
