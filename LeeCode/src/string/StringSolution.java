@@ -495,24 +495,6 @@ public class StringSolution {
 		return a.equals(b) ? -1 : Math.max(a.length(), b.length());
 	}
 
-	private boolean hasOneCharDiff(String word, String vocab) {
-		char[] w = word.toCharArray();
-		char[] v = vocab.toCharArray();
-
-		if (w.length != v.length)
-			return false;
-		int count = 0;
-		for (int i = 0; i < w.length; i++) {
-			if (w[i] != v[i]) {
-				count++;
-				if (count > 1)
-					return false;
-			}
-		}
-
-		return true;
-	}
-
 	/**
 	 * Question 1:
 	 * 
@@ -544,6 +526,20 @@ public class StringSolution {
 			}
 		}
 		return res;
+	}
+
+	private boolean hasOneCharDiff(String word, String vocab) {
+		if (word.length() != vocab.length())
+			return false;
+		int count = 0;
+		for (int i = 0; i < word.length(); i++) {
+			if (word.charAt(i) != vocab.charAt(i)) {
+				count++;
+				if (count > 1)
+					return false;
+			}
+		}
+		return true;
 	}
 
 	/**

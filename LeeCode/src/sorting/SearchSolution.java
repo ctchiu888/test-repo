@@ -113,4 +113,28 @@ public class SearchSolution {
 		return mergeList(pivot, sortList(lower), sortList(higher));
 	}
 
+	/**
+	 * 324. Wiggle Sort II
+	 * 
+	 * Given an unsorted array nums, reorder it such that nums[0] < nums[1] >
+	 * nums[2] < nums[3]....
+	 * 
+	 * Example: (1) Given nums = [1, 5, 1, 1, 6, 4], one possible answer is [1,
+	 * 4, 1, 5, 1, 6]. (2) Given nums = [1, 3, 2, 2, 3, 1], one possible answer
+	 * is [2, 3, 1, 3, 1, 2].
+	 * 
+	 * @param nums
+	 */
+	public void wiggleSort2(int[] nums) {
+		// Find the median
+		// if the size of array is even number, put the two medians at the two ends
+		// if the size of array is odd number, put the median at the end
+		// left part put in even index, 0, 2, 4...
+		// right part put in odd index
+		
+		// Partition the array into <small>, m, <large>
+		
+		// shuffle <small> and <large>
+	}
+
 }

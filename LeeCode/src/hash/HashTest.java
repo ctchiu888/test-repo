@@ -140,6 +140,14 @@ public class HashTest {
 		String[] rank = sol.findRelativeRanks(nums);
 		
 		System.out.println("test done");
-		
+	}
+	
+	@Test
+	public void testTinyUrl() {
+		Codec c = new Codec();
+		final String URL1 = "https://stackoverflow.com/questions/5683327/how-to-generate-a-random-string-of-20-characters";
+		final String URL2 = "http://www.geeksforgeeks.org/super-ugly-number-number-whose-prime-factors-given-set/";
+		assertEquals(URL1, c.decode(c.encode(URL1)));
+		assertEquals(URL2, c.decode(c.encode(URL2)));
 	}
 }
