@@ -242,4 +242,15 @@ public class ArrayTest {
 		PrintUtil.printArray(sol.findRestaurant(list3, list4));
 		
 	}
+	
+	@Test
+	public void testMaxSubArray() {
+		ArraySolution sol = new ArraySolution();
+		int[] nums1 = {7, -2, 1, 5, -4, -8, 3, 6, -1, 4};
+		int[] nums2 = {7};
+		int[] nums3 = {-1, -2};
+		System.out.println(sol.maxSubArray(nums1));
+		System.out.println(sol.maxSubArray(nums2));
+		System.out.println(sol.maxSubArray(nums3));
+	}
 }

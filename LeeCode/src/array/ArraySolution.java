@@ -594,5 +594,28 @@ public class ArraySolution {
 
 		return false;
 	}
+	
+	/**
+	 * 53. Maximum Subarray
+	 * 
+	 * @param nums
+	 * @return
+	 */
+    public int maxSubArray(int[] nums) {
+    	if (nums.length == 1) {
+    		return nums[0];
+    	}
+        int[] sum = new int[nums.length+1];
+        sum[0] = 0;
+        int max = Integer.MIN_VALUE;
+        
+        for (int i = 0; i < nums.length; i++) {
+        	sum[i+1] = sum[i] + nums[i];
+        	for (int j = 0; j < i+1; j++) {
+        		max = Math.max(max, sum[i+1] - sum[j]);
+        	}
+        }
+        return max;
+    }
 
 }
