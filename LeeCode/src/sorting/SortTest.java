@@ -22,6 +22,21 @@ public class SortTest {
 	}
 
 	@Test
+	public void testWiggleSort2() {
+		SearchSolution sol = new SearchSolution();
+		int[] nums0 = {};
+		int[] nums1 = { 1, 4, 2, 6, 7, 8, 3, 5, 9 };
+		int[] nums2 = { 1, 4, 2, 6, 7, 8, 3, 5 };
+
+		sol.wiggleSort2(nums1);
+		PrintUtil.printArray(nums0);
+		sol.wiggleSort2(nums1);
+		PrintUtil.printArray(nums1);
+		sol.wiggleSort2(nums2);
+		PrintUtil.printArray(nums2);
+	}
+	
+	@Test
 	public void testMedianSlidingWindow() {
 		MedianSolution sol = new MedianSolution();
 		int[] nums0 = {};

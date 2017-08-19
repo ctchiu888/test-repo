@@ -127,14 +127,61 @@ public class SearchSolution {
 	 */
 	public void wiggleSort2(int[] nums) {
 		// Find the median
-		// if the size of array is even number, put the two medians at the two ends
+		// if the size of array is even number, put the two medians at the two
+		// ends
 		// if the size of array is odd number, put the median at the end
 		// left part put in even index, 0, 2, 4...
 		// right part put in odd index
-		
+
 		// Partition the array into <small>, m, <large>
 		
+		int midIdx = partitionToMedian(nums);
+		for (int  i = 0; i < nums.length; i++) {
+			
+		}
+		
+
 		// shuffle <small> and <large>
+	}
+
+	private int partitionToMedian(int[] nums) {
+		
+		int lo = 0;
+		int hi = nums.length - 1;
+		int index = -1;
+		while (index != nums.length/2) {
+			index = partition(nums, lo, hi);
+			if (index < nums.length/2) {
+				lo = index;
+			} else {
+				hi = index;
+			}
+		}
+		
+		return index;
+	}
+	
+	private void swap(int a, int b) {
+		int tmp = a;
+		a = b;
+		b = tmp;
+	}
+
+	private int partition(int[] nums, int low, int high) {
+		int pivot = nums[high];
+		int i = low - 1;
+		for (int j = low; j < high - 1; j++) {
+			if (nums[j] < pivot) {
+				i++;
+				swap(nums[i], nums[j]);
+			}
+		}
+
+		if (nums[high] < nums[i + 1]) {
+			swap(nums[high], nums[i + 1]);
+		}
+
+		return i + 1;
 	}
 
 }
