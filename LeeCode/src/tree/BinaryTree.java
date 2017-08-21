@@ -1,10 +1,12 @@
 package tree;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class BinaryTree {
 
@@ -527,4 +529,103 @@ public class BinaryTree {
 			computeRange(node.right, column + 1);
 		}
 	}
+	
+	/**
+	 * 
+	 * @param root
+	 * @return
+	 */
+    public List<Integer> preorderTraversal0(TreeNode root) {
+        List<Integer> resultList = new ArrayList<>();
+        preorderHelper(root, resultList);
+        return resultList;
+    }
+    
+    private void preorderHelper(TreeNode node, List<Integer> list) {
+    	if (node == null) return;    	
+    	list.add(node.val);
+    	preorderHelper(node.left, list);
+    	preorderHelper(node.right, list);
+    }
+    
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> resultList = new ArrayList<>();
+        if (root == null) return resultList;
+        
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+        	TreeNode node = stack.pop();
+        	resultList.add(node.val);       	
+        	if (node.right != null) stack.push(node.right);
+        	if (node.left != null) stack.push(node.left);
+        }
+        
+        return resultList;
+    }
+    
+    /**
+     * 
+     * @param root
+     * @return
+     */
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> resultList = new ArrayList<>();
+        if (root == null) return resultList;
+        
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+        	TreeNode node = stack.pop();
+        	if (node.left == null && node.right == null) {
+        		resultList.add(node.val);
+        		continue;
+        	}
+        	
+        	if (node.right != null) {
+        		stack.push(node.right);
+        		node.right = null;
+        	}
+        	stack.push(node);
+        	if (node.left != null) {
+        		stack.push(node.left);
+        		node.left = null;
+        	}
+        }
+        
+        return resultList;
+    }
+    
+    /**
+     * 
+     * @param root
+     * @return
+     */
+    public List<Integer> postoderTraversal(TreeNode root) {
+        List<Integer> resultList = new ArrayList<>();
+        if (root == null) return resultList;
+        
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+        	TreeNode node = stack.pop();
+        	if (node.left == null && node.right == null) {
+        		resultList.add(node.val);
+        		continue;
+        	}
+        	
+        	stack.push(node);
+        	if (node.right != null) {
+        		stack.push(node.right);
+        		node.right = null;
+        	}
+
+        	if (node.left != null) {
+        		stack.push(node.left);
+        		node.left = null;
+        	}
+        }
+        
+        return resultList;
+    }
 }
