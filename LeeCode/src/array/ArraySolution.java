@@ -575,18 +575,18 @@ public class ArraySolution {
 	 * @return
 	 */
 	public boolean checkSubarraySum(int[] nums, int k) {
-		int[] sum = new int[nums.length+1];
+		int[] sum = new int[nums.length + 1];
 		sum[0] = 0;
-		sum[1] = nums[0];	
+		sum[1] = nums[0];
 		for (int i = 1; i < nums.length; i++) {
-			sum[i+1] = sum[i] + nums[i];
+			sum[i + 1] = sum[i] + nums[i];
 
 			for (int j = 0; j < i; j++) {
 				if (k == 0) {
-					if (sum[i+1] - sum[j] == 0) {
+					if (sum[i + 1] - sum[j] == 0) {
 						return true;
 					}
-				} else if ((sum[i+1] - sum[j]) % k == 0) {
+				} else if ((sum[i + 1] - sum[j]) % k == 0) {
 					return true;
 				}
 			}
@@ -594,28 +594,47 @@ public class ArraySolution {
 
 		return false;
 	}
-	
+
 	/**
 	 * 53. Maximum Subarray
 	 * 
 	 * @param nums
 	 * @return
 	 */
-    public int maxSubArray(int[] nums) {
-    	if (nums.length == 1) {
-    		return nums[0];
-    	}
-        int[] sum = new int[nums.length+1];
-        sum[0] = 0;
-        int max = Integer.MIN_VALUE;
-        
-        for (int i = 0; i < nums.length; i++) {
-        	sum[i+1] = sum[i] + nums[i];
-        	for (int j = 0; j < i+1; j++) {
-        		max = Math.max(max, sum[i+1] - sum[j]);
-        	}
-        }
-        return max;
-    }
+	public int maxSubArray(int[] nums) throws Exception {
+		if (nums == null || nums.length == 0) {
+			throw new Exception("Number array must contain at least one element");
+		}
+		
+		if (nums.length == 1) {
+			return nums[0];
+		}
+		int[] sum = new int[nums.length];
+		sum[0] = nums[0];
+		int max = sum[0];
+
+		for (int i = 1; i < nums.length; i++) {
+			sum[i] = nums[i] + (sum[i - 1] > 0 ? sum[i-1] : 0);
+			max = Math.max(max, sum[i]);
+		}
+		return max;
+	}
+	
+	public int maxSubArray0(int[] nums) {
+		if (nums.length == 1) {
+			return nums[0];
+		}
+		int[] sum = new int[nums.length + 1];
+		sum[0] = 0;
+		int max = Integer.MIN_VALUE;
+
+		for (int i = 0; i < nums.length; i++) {
+			sum[i + 1] = sum[i] + nums[i];
+			for (int j = 0; j < i + 1; j++) {
+				max = Math.max(max, sum[i + 1] - sum[j]);
+			}
+		}
+		return max;
+	}
 
 }

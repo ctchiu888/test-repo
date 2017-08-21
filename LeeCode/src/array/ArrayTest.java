@@ -244,7 +244,7 @@ public class ArrayTest {
 	}
 	
 	@Test
-	public void testMaxSubArray() {
+	public void testMaxSubArray() throws Exception {
 		ArraySolution sol = new ArraySolution();
 		int[] nums1 = {7, -2, 1, 5, -4, -8, 3, 6, -1, 4};
 		int[] nums2 = {7};
