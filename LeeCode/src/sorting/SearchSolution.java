@@ -146,15 +146,6 @@ public class SearchSolution {
 		// shuffle <small> and <large>
 	}
 	
-	private int partition(int[] nums, int low, int high) {
-		int pivot = nums[high];
-		int idx = low - 1;
-		for (int i = low; i < high - 1; i++) {
-		}
-		
-		
-	}
-
 	private int partitionToMedian(int[] nums) {
 		
 		int lo = 0;
