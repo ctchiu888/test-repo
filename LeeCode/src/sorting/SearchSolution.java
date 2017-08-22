@@ -126,7 +126,8 @@ public class SearchSolution {
 	 * @param nums
 	 */
 	public void wiggleSort2(int[] nums) {
-		if (nums.length < 2) return;
+		if (nums.length < 2)
+			return;
 		// Find the median
 		// if the size of array is even number, put the two medians at the two
 		// ends
@@ -135,34 +136,33 @@ public class SearchSolution {
 		// right part put in odd index
 
 		// Partition the array into <small>, m, <large>
-		int mIdx = partition(nums, 0, nums.length-1);
-		
+		int mIdx = partition(nums, 0, nums.length - 1);
+
 		int midIdx = partitionToMedian(nums);
-		for (int  i = 0; i < nums.length; i++) {
-			
+		for (int i = 0; i < nums.length; i++) {
+
 		}
-		
 
 		// shuffle <small> and <large>
 	}
-	
+
 	private int partitionToMedian(int[] nums) {
-		
+
 		int lo = 0;
 		int hi = nums.length - 1;
 		int index = -1;
-		while (index != nums.length/2) {
+		while (index != nums.length / 2) {
 			index = partition(nums, lo, hi);
-			if (index < nums.length/2) {
+			if (index < nums.length / 2) {
 				lo = index;
 			} else {
 				hi = index;
 			}
 		}
-		
+
 		return index;
 	}
-	
+
 	private void swap(int a, int b) {
 		int tmp = a;
 		a = b;
@@ -184,6 +184,79 @@ public class SearchSolution {
 		}
 
 		return i + 1;
+	}
+
+	/**
+	 * 75. Sort Colors
+	 * 
+	 * @param nums
+	 */
+	public void sortColors(int[] nums) {
+		if (nums == null || nums.length < 2)
+			return;
+		int low = 0;
+		int high = nums.length - 1;
+
+		for (int i = low; i <= high;) {
+			if (nums[i] == 0) {
+				// move to the beginning
+				nums[i] = nums[low];
+				nums[low] = 0;
+				i++;
+				low++;
+			} else if (nums[i] == 2) {
+				// move to the end
+				nums[i] = nums[high];
+				nums[high] = 2;
+				high--;
+			} else {
+				i++;
+			}
+		}
+	}
+
+	/**
+	 * 200. Number of Islands
+	 * 
+	 * Given a 2d grid map of '1's (land) and '0's (water), count the number of
+	 * islands.
+	 * 
+	 * An island is surrounded by water and is formed by connecting adjacent
+	 * lands horizontally or vertically.
+	 * 
+	 * You may assume all four edges of the grid are all surrounded by water.
+	 * 
+	 * @param grid
+	 * @return
+	 */
+	public int numIslands(char[][] grid) {
+		if (grid == null || grid.length == 0 || grid[0].length == 0)
+			return 0;
+		int rows = grid.length;
+		int cols = grid[0].length;
+		int count = 0;
+
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				if (grid[i][j] == '1') {
+					markIsland(grid, i, j);
+					count++;
+				}
+			}
+		}
+
+		return count;
+	}
+
+	private void markIsland(char[][] grid, int row, int col) {
+		if (row < 0 || col < 0 || row >= grid.length || col >= grid[0].length
+				|| grid[row][col] == '0')
+			return;
+		grid[row][col] = '0';
+		markIsland(grid, row - 1, col);
+		markIsland(grid, row + 1, col);
+		markIsland(grid, row, col - 1);
+		markIsland(grid, row, col + 1);
 	}
 
 }

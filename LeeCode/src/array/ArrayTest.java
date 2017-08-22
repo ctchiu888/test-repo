@@ -151,15 +151,6 @@ public class ArrayTest {
 	}
 
 	@Test
-	public void testSortColors() {
-		ArraySolution sol = new ArraySolution();
-		int[] nums = { 1, 2, 0, 1, 2, 2, 0, 2 };
-		sol.sortColors(nums);
-
-		assertTrue(Arrays.equals(new int[] { 0, 0, 1, 1, 2, 2, 2, 2 }, nums));
-	}
-
-	@Test
 	public void testFindUnsortedSubarray() {
 		ArraySolution sol = new ArraySolution();
 		assertEquals(0, sol.findUnsortedSubarray(new int[] { 1, 2 }));

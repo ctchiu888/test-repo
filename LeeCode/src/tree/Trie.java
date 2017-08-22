@@ -1,7 +1,5 @@
 package tree;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class Trie {
 
@@ -17,7 +15,7 @@ public class Trie {
 
 	/** Returns if the word is in the trie. */
 	public boolean search(String word) {
-
+		return true;
 	}
 
 	/**
@@ -25,6 +23,6 @@ public class Trie {
 	 * prefix.
 	 */
 	public boolean startsWith(String prefix) {
-
+		return true;
 	}
 }
