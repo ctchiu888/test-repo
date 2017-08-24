@@ -550,7 +550,7 @@ public class ArraySolution {
 	 * @param k
 	 * @return
 	 */
-	public boolean checkSubarraySum(int[] nums, int k) {
+	public boolean checkSubarraySum0(int[] nums, int k) {
 		int[] sum = new int[nums.length + 1];
 		sum[0] = 0;
 		sum[1] = nums[0];
@@ -571,6 +571,26 @@ public class ArraySolution {
 		return false;
 	}
 
+	public boolean checkSubarraySum(int[] nums, int k) {
+		int remainder = 0;
+		// key is remainder, value is index in nums
+		Map<Integer, Integer> remainderMap = new HashMap<>();
+		
+		for (int i = 1; i < nums.length; i++) {
+			remainder += nums[i];
+			if (k != 0) {
+				remainder %= k;
+			}
+			
+			Integer idx = remainderMap.get(remainder);
+			if (idx != null) {
+				return true;
+			}
+			remainderMap.put(remainder, i);
+		}
+
+		return false;
+	}
 	/**
 	 * 53. Maximum Subarray
 	 * 
