@@ -581,7 +581,7 @@ public class ArraySolution {
 		if (nums == null || nums.length == 0) {
 			throw new Exception("Number array must contain at least one element");
 		}
-		
+
 		if (nums.length == 1) {
 			return nums[0];
 		}
@@ -590,12 +590,12 @@ public class ArraySolution {
 		int max = sum[0];
 
 		for (int i = 1; i < nums.length; i++) {
-			sum[i] = nums[i] + (sum[i - 1] > 0 ? sum[i-1] : 0);
+			sum[i] = nums[i] + (sum[i - 1] > 0 ? sum[i - 1] : 0);
 			max = Math.max(max, sum[i]);
 		}
 		return max;
 	}
-	
+
 	public int maxSubArray0(int[] nums) {
 		if (nums.length == 1) {
 			return nums[0];
@@ -611,6 +611,34 @@ public class ArraySolution {
 			}
 		}
 		return max;
+	}
+
+	/**
+	 * 27. Remove Element
+	 * 
+	 * @param nums
+	 * @param val
+	 * @return
+	 */
+	public int removeElement(int[] nums, int val) {
+		if (nums == null || nums.length == 0 || (nums.length == 1 && nums[0] == val))
+			return 0;
+		int l = 0;
+		int r = nums.length - 1;
+		while (l < r) {
+			while (r > l && nums[r] == val)
+				r--;
+			if (nums[l] == val) {
+				nums[l] = nums[r];
+				r--;
+			}
+			l++;
+		}
+
+		if (r >= 0 && nums[r] == val)
+			r--;
+
+		return r + 1;
 	}
 
 }
