@@ -9,6 +9,18 @@ import java.util.List;
 import java.util.Map;
 
 public class StringSolution {
+
+	/**
+	 * 344. Reverse String
+	 * 
+	 * Write a function that takes a string as input and returns the string
+	 * reversed.
+	 * 
+	 * Example: Given s = "hello", return "olleh".
+	 * 
+	 * @param s
+	 * @return
+	 */
 	public String reverseString(String s) {
 		if (s == null)
 			return s;
@@ -22,28 +34,15 @@ public class StringSolution {
 			ch[i] = ch[lastIdx - i];
 			ch[lastIdx - i] = tmp;
 		}
-
 		return String.valueOf(ch);
 	}
 
-	public boolean isVowel(char c) {
-		switch (c) {
-		case 'a':
-		case 'e':
-		case 'i':
-		case 'o':
-		case 'u':
-		case 'A':
-		case 'E':
-		case 'I':
-		case 'O':
-		case 'U':
-			return true;
-		}
-
-		return false;
-	}
-
+	/**
+	 * 345. Reverse Vowels of a String
+	 * 
+	 * @param s
+	 * @return
+	 */
 	public String reverseVowels(String s) {
 		if (s == null)
 			return s;
@@ -73,6 +72,31 @@ public class StringSolution {
 		}
 
 		return String.valueOf(ch);
+	}
+
+	// This one is much faster
+	// String operation is expensive
+	private boolean isVowel(char c) {
+		switch (c) {
+		case 'a':
+		case 'e':
+		case 'i':
+		case 'o':
+		case 'u':
+		case 'A':
+		case 'E':
+		case 'I':
+		case 'O':
+		case 'U':
+			return true;
+		}
+
+		return false;
+	}
+
+	private boolean isVowel0(char c) {
+		final String vowels = "aeiouAEIOU";
+		return vowels.contains("" + c);
 	}
 
 	private Map<Character, Integer> constructLetterCount(String str) {
@@ -155,19 +179,19 @@ public class StringSolution {
 	 * @param s
 	 * @return
 	 */
-	public List<String> generatePossibleNextMovesame(String s) {
-		List<String> l = new ArrayList<>();
+	public List<String> generatePossibleNextMoves(String s) {
+		List<String> resList = new ArrayList<>();
 		if (s == null)
-			return l;
+			return resList;
 		int index = 0;
 		while (index < s.length()) {
 			int position = s.substring(index).indexOf("++");
 			if (position == -1)
 				break;
 			index += position + 1;
-			l.add(s.substring(0, index - 1) + "--" + s.substring(index + 1));
+			resList.add(s.substring(0, index - 1) + "--" + s.substring(index + 1));
 		}
-		return l;
+		return resList;
 	}
 
 	/**
@@ -196,7 +220,7 @@ public class StringSolution {
 
 		while (!queue.isEmpty()) {
 			FlipString fs = queue.remove();
-			List<String> list = generatePossibleNextMovesame(fs.str);
+			List<String> list = generatePossibleNextMoves(fs.str);
 			if (list.isEmpty() && fs.count % 2 == 0) {
 				canWin = canWin && true;
 			}

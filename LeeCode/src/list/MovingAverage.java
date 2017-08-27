@@ -18,12 +18,11 @@ public class MovingAverage {
 
 	public double next(int val) {
 		if (queue.size() == winSize) {
-			Integer head = queue.remove();
-			ma = ((ma * winSize - head.intValue()) + val) / winSize;
-			queue.add(new Integer(val));
+			ma = (ma * winSize - queue.poll() + val) / winSize;
+			queue.add(val);
 		} else {
 			int size = queue.size();
-			queue.add(new Integer(val));
+			queue.add(val);
 			ma = ((ma * size) + val) / queue.size();
 		}
 		

@@ -45,7 +45,7 @@ public class StringTest {
 		String[] str = { "++++", "+-+-+", "--+-+++-", "++---+-+++-+-+++++--++" };
 		StringSolution sol = new StringSolution();
 		for (String s : str) {
-			List<String> l = sol.generatePossibleNextMovesame(s);
+			List<String> l = sol.generatePossibleNextMoves(s);
 			System.out.println(s + " => ");
 			for (String t : l)
 				System.out.println("\t" + t);

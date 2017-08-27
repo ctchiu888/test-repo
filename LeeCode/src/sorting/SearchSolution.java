@@ -73,7 +73,7 @@ public class SearchSolution {
 		}
 	}
 
-	public ListNode mergeList(ListNode pivot, ListNode lower, ListNode higher) {
+	public ListNode mergeList1(ListNode pivot, ListNode lower, ListNode higher) {
 		if (pivot == null)
 			return null;
 		pivot.next = higher;
@@ -89,7 +89,7 @@ public class SearchSolution {
 		return head;
 	}
 
-	public ListNode sortList(ListNode head) {
+	public ListNode sortList1(ListNode head) {
 		if (head == null || head.next == null) {
 			return head;
 		}
@@ -110,7 +110,58 @@ public class SearchSolution {
 			node = tmp;
 		}
 
-		return mergeList(pivot, sortList(lower), sortList(higher));
+		return mergeList1(pivot, sortList1(lower), sortList1(higher));
+	}
+
+	private ListNode mergeSortedList(ListNode l1, ListNode l2) {
+		if (l1 == null)
+			return l2;
+		if (l2 == null)
+			return l1;
+
+		ListNode head = new ListNode(Integer.MIN_VALUE);
+		ListNode p = head;
+
+		while (l1 != null && l2 != null) {
+			if (l1.val < l2.val) {
+				p.next = l1;
+				l1 = l1.next;
+			} else {
+				p.next = l2;
+				l2 = l2.next;
+			}
+
+			p = p.next;
+		}
+
+		if (l1 != null) {
+			p.next = l1;
+		}
+
+		if (l2 != null) {
+			p.next = l2;
+		}
+		head = head.next;
+
+		return head;
+	}
+
+	public ListNode sortList(ListNode head) {
+		if (head == null || head.next == null)
+			return head;
+		ListNode slow = head;
+		ListNode fast = head;
+		ListNode lastOfFirstList = null;
+
+		while (fast != null && fast.next != null) {
+			fast = fast.next.next;
+			lastOfFirstList = slow;
+			slow = slow.next;
+		}
+
+		lastOfFirstList.next = null;
+
+		return mergeSortedList(sortList(head), sortList(slow));
 	}
 
 	/**
@@ -249,8 +300,7 @@ public class SearchSolution {
 	}
 
 	private void markIsland(char[][] grid, int row, int col) {
-		if (row < 0 || col < 0 || row >= grid.length || col >= grid[0].length
-				|| grid[row][col] == '0')
+		if (row < 0 || col < 0 || row >= grid.length || col >= grid[0].length || grid[row][col] == '0')
 			return;
 		grid[row][col] = '0';
 		markIsland(grid, row - 1, col);
