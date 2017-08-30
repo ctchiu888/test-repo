@@ -220,4 +220,12 @@ public class StringTest {
 		PrintUtil.printList(sol.generatePattern("??00?101"));
 		PrintUtil.printList(sol.generatePattern("1?00?10?"));
 	}
+	
+	@Test
+	public void testJudgeCircle() {
+		StringSolution sol = new StringSolution();
+		assertTrue(sol.judgeCircle("LLRRUUDUDD"));
+		assertTrue(!sol.judgeCircle("LLRRUUDUD"));
+		assertTrue(sol.judgeCircle("LLRRUUDUDDDDUURLUD"));
+	}
 }

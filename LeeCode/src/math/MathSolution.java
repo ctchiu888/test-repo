@@ -11,13 +11,23 @@ public class MathSolution {
 	 * @param nums
 	 * @return
 	 */
-	public int missingNumber(int[] nums) {
+	public int missingNumber1(int[] nums) {
 		int n = nums.length;
 		int res = ((1 + n) * n) / 2;
 		for (int i = 0; i < nums.length; i++) {
 			res -= nums[i];
 		}
 		return res;
+	}
+	
+	public int missingNumber(int[] nums) {
+		int n = nums.length;
+		int total = (n * n + n) / 2;
+		int sum = 0;
+		for (int num : nums) {
+			sum += num;
+		}
+		return total - sum;
 	}
 
 	public double myPow(double x, int n) {

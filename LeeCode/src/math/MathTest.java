@@ -16,9 +16,9 @@ public class MathTest {
 		assertEquals(1, b.hammingWeight(16));
 		assertEquals(1, b.hammingWeight(0x80000000));
 		assertEquals(32, b.hammingWeight(0xFFFFFFFF));
-		
+
 	}
-	
+
 	@Test
 	public void testIsPowerOfTwo() {
 		Bit b = new Bit();
@@ -31,7 +31,7 @@ public class MathTest {
 		assertEquals(false, b.isPowerOfTwo(2397));
 		assertEquals(true, b.isPowerOfTwo(8192));
 	}
-	
+
 	@Test
 	public void testIsPowerOfThree() {
 		Bit b = new Bit();
@@ -44,7 +44,7 @@ public class MathTest {
 		assertEquals(false, b.isPowerOfThree(2397));
 		assertEquals(true, b.isPowerOfThree(19683));
 	}
-	
+
 	@Test
 	public void testFindNthDigit() {
 		Digit d = new Digit();
@@ -56,19 +56,19 @@ public class MathTest {
 		assertEquals(3, d.findNthDigit(1000));
 		assertEquals(1, d.findNthDigit(1000000000));
 	}
-	
+
 	@Test
 	public void testMissingNumber() {
 		MathSolution sol = new MathSolution();
-		assertEquals(2, sol.missingNumber(new int[] {0,3,1, 4, 5}));
+		assertEquals(2, sol.missingNumber(new int[] { 0, 3, 1, 4, 5 }));
 	}
-	
+
 	@Test
 	public void testReadBinaryWatch() {
 		Bit bit = new Bit();
 		PrintUtil.printList(bit.readBinaryWatch(4));
 	}
-	
+
 	@Test
 	public void testMyPow() {
 		MathSolution m = new MathSolution();
@@ -76,7 +76,7 @@ public class MathTest {
 		System.out.println(m.myPow(8.88023, -7));
 		System.out.println(m.myPow(2.00000, -2147483648));
 	}
-	
+
 	@Test
 	public void testArrangeCoins() {
 		MathSolution m = new MathSolution();
