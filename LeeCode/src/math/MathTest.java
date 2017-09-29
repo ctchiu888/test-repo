@@ -93,4 +93,14 @@ public class MathTest {
 		Bit b = new Bit();
 		assertEquals(2, b.hammingDistance(1, 4));
 	}
+	
+	@Test
+	public void testReverse() {
+		MathSolution sol = new MathSolution();
+		
+//		assertEquals(123, sol.reverse(321));
+//		assertEquals(-321, sol.reverse(-123));
+		assertEquals(0, sol.reverse(1534236469));
+		
+	}
 }

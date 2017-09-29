@@ -19,7 +19,7 @@ public class MathSolution {
 		}
 		return res;
 	}
-	
+
 	public int missingNumber(int[] nums) {
 		int n = nums.length;
 		int total = (n * n + n) / 2;
@@ -79,7 +79,7 @@ public class MathSolution {
 	public int arrangeCoins(int n) {
 		return (int) (-1 + Math.sqrt(8 * (long) n + 1)) / 2;
 	}
-	
+
 	/**
 	 * 399. Evaluate Division
 	 * 
@@ -88,16 +88,36 @@ public class MathSolution {
 	 * @param queries
 	 * @return
 	 */
-    public double[] calcEquation(String[][] equations, double[] values, String[][] queries) {
-        double [] res = new double[queries.length];
-        
-        for (int i = 0; i < equations.length; i++) {
-        	
-        }
-        
-        return res;
-    }
-    
-    
+	public double[] calcEquation(String[][] equations, double[] values, String[][] queries) {
+		double[] res = new double[queries.length];
+
+		for (int i = 0; i < equations.length; i++) {
+
+		}
+
+		return res;
+	}
+
+	/**
+	 * 7. Reverse Integer
+	 * 
+	 * @param x
+	 * @return
+	 */
+	public int reverse(int x) {
+		int num = (x < 0) ? -x : x;
+		int res = 0;
+		try {
+			while (num > 0) {
+				int n = num % 10;
+				num /= 10;
+				res = res * 10 + n;
+			}
+		} catch (Exception e) {
+			res = 0;
+		}
+
+		return x < 0 ? -res : res;
+	}
 
 }
