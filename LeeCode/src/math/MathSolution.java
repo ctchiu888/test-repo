@@ -107,14 +107,16 @@ public class MathSolution {
 	public int reverse(int x) {
 		int num = (x < 0) ? -x : x;
 		int res = 0;
-		try {
-			while (num > 0) {
-				int n = num % 10;
-				num /= 10;
-				res = res * 10 + n;
-			}
-		} catch (Exception e) {
-			res = 0;
+		int newRes;
+
+		while (num > 0) {
+			int n = num % 10;
+			num /= 10;
+			newRes = res * 10 + n;
+
+			if ((newRes - n) / 10 != res)
+				return 0;
+			res = newRes;
 		}
 
 		return x < 0 ? -res : res;

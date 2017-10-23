@@ -98,8 +98,10 @@ public class MathTest {
 	public void testReverse() {
 		MathSolution sol = new MathSolution();
 		
-//		assertEquals(123, sol.reverse(321));
-//		assertEquals(-321, sol.reverse(-123));
+		assertEquals(123, sol.reverse(321));
+		assertEquals(-321, sol.reverse(-123));
+		assertEquals(21, sol.reverse(1200));
+		assertEquals(1032, sol.reverse(2301));
 		assertEquals(0, sol.reverse(1534236469));
 		
 	}

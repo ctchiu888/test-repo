@@ -9,7 +9,16 @@ import java.util.List;
 import java.util.Queue;
 
 public class BinaryTree {
+	TreeNode root;
+	
+	BinaryTree(int val) {
+		root = new TreeNode(val);
+	}
 
+	BinaryTree() {
+		root = null;
+	}
+	
 	public int closestValue(TreeNode root, double target) {
 
 		int closest = root.val;
