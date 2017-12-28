@@ -2,7 +2,9 @@ package dp;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 public class DynamicProgramming {
@@ -114,8 +116,7 @@ public class DynamicProgramming {
 		int idx = 0;
 
 		for (int i = 0; i < rows; i++) {
-			if (st.charAt(idx + cols - 1) == ' '
-					|| st.charAt(idx + cols) == ' ') {
+			if (st.charAt(idx + cols - 1) == ' ' || st.charAt(idx + cols) == ' ') {
 				idx += cols;
 			} else {
 				idx += cols;
@@ -182,8 +183,57 @@ public class DynamicProgramming {
 		}
 
 		if (step == 0)
-			q.addLast("(" + str.substring(0, closeIdx) + ")"
-					+ str.substring(closeIdx));
+			q.addLast("(" + str.substring(0, closeIdx) + ")" + str.substring(closeIdx));
+	}
+
+	public List<String> wordBreak(String s, List<String> wordDict) {
+		if (s == null || "".equals(s.trim())) {
+			return Arrays.asList("");
+		}
+		List<String> res = new ArrayList<>();
+		LinkedList<String> buffer = new LinkedList<>();
+		int startIdx = 0;
+		int endIdx = 1;
+
+		wordBreakHelper(s, startIdx, endIdx, wordDict, buffer, res);
+		return res;
+	}
+
+	private void wordBreakHelper(String s, int startIdx, int endIdx, List<String> dict, LinkedList<String> buffer,
+			List<String> result) {
+
+		while (true) {
+			if (startIdx >= endIdx && buffer.isEmpty())
+				return;
+			if (endIdx == s.length()) {
+				if (dict.contains(s.substring(startIdx, endIdx))) {
+					buffer.add(s.substring(startIdx, endIdx));
+					addBufferToResult(buffer, result);
+					buffer.removeLast();
+				}
+				if (buffer.isEmpty())
+					return;
+				String prevStr = buffer.removeLast();
+				endIdx = startIdx + 1;
+				startIdx -= prevStr.length();
+			} else if (dict.contains(s.substring(startIdx, endIdx))) {
+				buffer.offer(s.substring(startIdx, endIdx));
+				startIdx = endIdx;
+				endIdx++;
+			} else {
+				endIdx++;
+			}
+		}
+		// wordBreakHelper(s, startIdx, endIdx, dict, buffer, result);
+	}
+
+	private void addBufferToResult(LinkedList<String> buffer, List<String> result) {
+		StringBuilder sb = new StringBuilder();
+		for (String str : buffer) {
+			sb.append(str).append(" ");
+		}
+
+		result.add(sb.toString().trim());
 	}
 
 }
